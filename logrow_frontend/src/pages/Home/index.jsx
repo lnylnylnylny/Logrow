@@ -1,8 +1,13 @@
+import Sidebar from './components/Sidebar';
+import InfoPanel from './components/InfoPanel';
+import CalendarPanel from './calendar/CalendarPanel';
+
 export default function Home() {
-    return (
-        <div>
-        <h1>Home Page</h1>
-        <p>Welcome to the home page!</p>
-        </div>
-    );
+  return (
+    <div className="homeContainer">
+      <Sidebar />
+      <CalendarPanel />
+      <InfoPanel />
+    </div>
+  );
 }
