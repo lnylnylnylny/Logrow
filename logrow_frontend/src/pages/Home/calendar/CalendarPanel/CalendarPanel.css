@@ -13,8 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 1200px;   
+    width: 100%; 
     margin: 0 auto;      
     padding: 0 20px;     
     box-sizing: border-box;
@@ -22,12 +21,14 @@
   .logo {
     height: 32px;
     object-fit: contain;
+    display: block; 
   }
 
   .titleGroup {
     display: flex;
     align-items: center;
     gap: 10px;
+    height: 32px;     
   }
   
   .year {
