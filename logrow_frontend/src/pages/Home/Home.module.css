@@ -1,7 +1,34 @@
-/* Home.module.css */
-.homeContainer {
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #f6f7fb;
+  }
+  
+  .sidebar {
+    flex-shrink: 0;
+    height: 100%;
+    /* Sidebar 내부에서 width: 50px 이미 설정됨 */
+  }
+  
+  .infoPanel {
+    width: 350px; /* 또는 flex: 1.5 로 비율 지정도 가능 */
+    flex-shrink: 0;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    height: 100vh;
+    border: solid 1px #e0e0e0;
+  }
+  
+  .calendarPanel {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
   }
   

@@ -1,13 +1,25 @@
 import Sidebar from './components/Sidebar';
 import InfoPanel from './components/InfoPanel';
 import CalendarPanel from './calendar/CalendarPanel';
+import styles from "./Home.module.css";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedStudy, setSelectedStudy] = useState(null);
+
   return (
-    <div className="homeContainer">
-      <Sidebar />
-      <CalendarPanel />
-      <InfoPanel />
+    <div className={styles.container}>
+      <div className={styles.sidebar}>
+        <Sidebar />
+      </div>
+
+      <div className={styles.infoPanel}>
+        <InfoPanel study={selectedStudy} />
+      </div>
+
+      <div className={styles.calendarPanel}>
+        <CalendarPanel setSelectedStudy={setSelectedStudy} />
+      </div>
     </div>
   );
 }
