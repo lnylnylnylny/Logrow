@@ -2,7 +2,6 @@ import "./CalendarPanel/CalendarPanel.css";
 import { studyData, typeColorMap } from "./CalendarPanel/data/addStudyData";
 import CalendarBlock from "./CalendarBlock";
 import {
-  getStartDayIndex,
   getFirstCalendarDate,
   getCellDate,
 } from "./CalendarUtils";
@@ -10,7 +9,7 @@ import {
 export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
   const year = selectedDate.getFullYear();
   const month = selectedDate.getMonth();
-  const startDayIndex = getStartDayIndex(year, month);
+
   const weeks = 6;
   const days = ["Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.", "Sun."];
 

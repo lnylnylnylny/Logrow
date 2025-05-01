@@ -32,6 +32,17 @@ const studyData = [
     studyParticipants: 5,
     mode: "온라인",
   },
+  {
+    id: 4,
+    studyName: "모의면접",
+    studyType: "모의면접",
+    startDate: "2025-04-01",
+    endDate: "2025-04-13",
+    day: ["월", "수", "금"],
+    studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
+    studyParticipants: 5,
+    mode: "온라인",
+  },
 ];
 
 const typeColorMap = {
