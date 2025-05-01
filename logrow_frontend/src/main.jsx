@@ -3,6 +3,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
+import AddStudy from "./pages/AddStudy";
 
 let router = createBrowserRouter([
   {
@@ -13,10 +14,10 @@ let router = createBrowserRouter([
         index: true,
         Component: Home,
       },
-      // {
-      //   path: "login",
-      //   Component: Login,
-      // },
+      {
+        path: "addStudy",
+        Component: AddStudy,
+      },
 
     ],
   },
