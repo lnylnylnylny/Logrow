@@ -1,6 +1,8 @@
 import styles from "./AddStudy.module.css";
 import Sidebar from "../Sidebar";
 import logo from "../../assets/logo.svg";
+import { useEffect } from "react";
+import { handleDateValidation} from "./addStudyUtils";
 
 export default function AddStudy() {
   const days = [
@@ -12,6 +14,15 @@ export default function AddStudy() {
     { kor: "토요일", eng: "Sat." },
     { kor: "일요일", eng: "Sun." },
   ];
+
+  useEffect(() => {
+    const startInput = document.querySelector('input[name="startDate"]');
+    const endInput = document.querySelector('input[name="endDate"]');
+    if (startInput && endInput) {
+      handleDateValidation(startInput, endInput);
+    }
+  }, []);
+  
 
   return (
     <div className={styles.container}>
