@@ -15,10 +15,10 @@
   .infoPanel {
     width: 350px; /* 또는 flex: 1.5 로 비율 지정도 가능 */
     flex-shrink: 0;
-    padding: 20px 10px;
+    padding: 20px 10px 20px 20px;
     box-sizing: border-box;
     overflow-y: hidden;
-    height: 100vh;
+    height: 100%;
   }
   
   .calendarPanel {

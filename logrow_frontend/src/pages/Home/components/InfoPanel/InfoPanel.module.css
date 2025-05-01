@@ -1,23 +1,24 @@
 .infoCard {
   background-color: #ffffff;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   font-family: "Pretendard";
   display: flex;
   flex-direction: column;
   gap: 12px;
-
+  height: 100%; 
+  box-sizing: border-box;
 }
 
 .section {
   background-color: #fafafa;
   border-radius: 10px;
-  padding: 12px 16px;
+  padding: 10px;
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .sectionTitle {
@@ -26,11 +27,7 @@
   margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.sectionTitle::before {
-  content: "📌";
+  gap: 3px;
 }
 
 .sectionContent {
@@ -38,6 +35,10 @@
   color: #555;
   white-space: pre-line;
   line-height: 1.6;
+
+  max-height: 120px;         /* 적절한 높이 (원하면 조절 가능) */
+  overflow-y: auto;          /* 세로 스크롤 허용 */
+  padding-right: 4px;
 }
 
 .button {

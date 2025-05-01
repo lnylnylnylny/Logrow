@@ -18,15 +18,17 @@ export default function InfoPanel({ study }) {
 
   return (
     <div className={styles.infoCard}>
-      <InfoSection title="스터디명">{study.studyName}</InfoSection>
-      <InfoSection title="유형">{study.studyType}</InfoSection>
-      <InfoSection title="기간">
+      <InfoSection title="📘 스터디명">{study.studyName}</InfoSection>
+      <InfoSection title="🧭 유형">{study.studyType}</InfoSection>
+      <InfoSection title="🗓️ 기간">
         {study.startDate} ~ {study.endDate}
       </InfoSection>
-      <InfoSection title="요일">{study.day.join(", ")}</InfoSection>
-      <InfoSection title="설명">{study.studyDescription}</InfoSection>
-      <InfoSection title="모집 인원">{study.studyParticipants}명</InfoSection>
-      <InfoSection title="진행 방식">{study.mode}</InfoSection>
+      <InfoSection title="📅 요일">{study.day.join(", ")}</InfoSection>
+      <InfoSection title="👥 모집 인원">
+        {study.studyParticipants}명
+      </InfoSection>
+      <InfoSection title="💻 진행 방식">{study.mode}</InfoSection>
+      <InfoSection title="📝 설명">{study.studyDescription}</InfoSection>
 
       <div className={styles.button}>신청하러 가기</div>
     </div>
