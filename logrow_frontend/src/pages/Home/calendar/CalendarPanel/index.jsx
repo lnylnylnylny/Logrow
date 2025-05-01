@@ -4,9 +4,10 @@ import "./CalendarPanel.css";
 import { useState } from "react";
 
 export default function CalendarPanel({ setSelectedStudy }) {
-  const currentMonth = new Date().getMonth() + 1;
-  const [calendarDate, setCalendarDate] = useState(new Date());
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const today = new Date(); // ✅ 오늘 날짜
+  const [calendarDate, setCalendarDate] = useState(today);
+  const [selectedMonth, setSelectedMonth] = useState(today.getMonth() + 1);
+  
 
   return (
     <div className="calendarPanel">

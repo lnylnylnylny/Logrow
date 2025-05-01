@@ -2,6 +2,7 @@ import "./CalendarPanel/CalendarPanel.css";
 import logo from "../../../assets/logo.svg";
 import monthData from "./CalendarPanel/data/monthData";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
 import "swiper/css";
 import { useEffect, useState } from "react";
 
@@ -26,6 +27,7 @@ export default function CalendarHeader({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  
 
   return (
     <div className="calendar-header">
@@ -47,7 +49,7 @@ export default function CalendarHeader({
           grabCursor
           centeredSlides={false}
           slidesOffsetAfter={0}
-          initialSlide={selectedMonth - 1}
+          initialSlide={0}
           resistance={true}
           className="monthSwiper"
         >

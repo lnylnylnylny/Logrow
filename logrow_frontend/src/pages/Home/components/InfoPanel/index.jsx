@@ -11,7 +11,7 @@ export default function InfoPanel({ study }) {
   if (!study) {
     return (
       <div className={styles.placeholder}>
-        <p>📌 우측 캘린더의 바를 클릭해보세요!</p>
+        <p>📌 우측 캘린더 바를 클릭해보세요!</p>
       </div>
     );
   }

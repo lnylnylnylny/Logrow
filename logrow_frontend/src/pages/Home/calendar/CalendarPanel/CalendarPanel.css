@@ -77,8 +77,8 @@
 }
 
 .monthIcon {
-  width: 110px; /* ✅ 항상 고정 사이즈 */
-  height: 80px;
+  width: 110px; 
+  height: 75px;
   border-radius: 8px;
   background-color: #eaeaea;
   object-fit: contain;
@@ -106,7 +106,7 @@
 /* 오늘 날짜 */
 .todayBox {
   flex-grow: 1;
-  margin: 10px;
+  margin: 5px 10px;
   border: 1px solid #d7d7d7;
   background-color: #fcfcfc;
   padding: 10px;
@@ -114,16 +114,17 @@
   flex-direction: column;
   overflow: hidden;
   min-width: 0;
+  gap: 2px;
 }
 
 .todayLabel {
-  font-size: 12px;
+  font-size: 10px;
   color: #888;
 }
 
 .todayText {
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
@@ -178,7 +179,7 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   position: relative;
-  height: 104px;
+  height: 98px;
   border-top: 1px solid #eee;
 }
 
