@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
-import mini_logo from "../../../../assets/mini_logo.svg";
+import mini_logo from "../../assets/mini_logo.svg";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaBookOpen } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
