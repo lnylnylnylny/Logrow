@@ -1,19 +1,19 @@
 import styles from "./AddStudy.module.css";
+import Sidebar from "../Sidebar";
 
 export default function AddStudy() {
   return (
     <div className={styles.container}>
+      <Sidebar />
 
       <div className={styles.formContainer}>
+      <div className={styles.header}>스터디 개설하기</div>
+
+      
         <form className={styles.form}>
           <label>
             스터디명
             <input type="text" name="studyName" />
-          </label>
-
-          <label>
-            스터디 설명
-            <textarea name="studyDescription" rows="4" />
           </label>
 
           <label>
@@ -29,6 +29,11 @@ export default function AddStudy() {
             </select>
           </label>
 
+          <label>
+            스터디 모집 인원
+            <input type="number" name="studyParticipants" min="0" />
+          </label>
+
           <div>
             <div className={styles.label}>스터디 모집 기간:</div>
             <div className={styles.dateRange}>
@@ -38,10 +43,6 @@ export default function AddStudy() {
             </div>
           </div>
 
-          <label>
-            스터디 모집 인원
-            <input type="number" name="studyParticipants" min="0" />
-          </label>
           <label>
             진행 요일
             <div className={styles.checkboxGroup}>
@@ -76,6 +77,11 @@ export default function AddStudy() {
               <option value="오프라인">오프라인</option>
               <option value="혼합">혼합</option>
             </select>
+          </label>
+
+          <label>
+            스터디 설명
+            <textarea name="studyDescription" rows="4" />
           </label>
 
           <button type="submit">신청하기</button>

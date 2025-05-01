@@ -3,7 +3,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import AddStudy from "./pages/AddStudy";
+import addStudy from "./pages/addStudy";
 
 let router = createBrowserRouter([
   {
@@ -15,8 +15,8 @@ let router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "addStudy",
-        Component: AddStudy,
+        path: "addstudy",
+        Component: addStudy,
       },
 
     ],
