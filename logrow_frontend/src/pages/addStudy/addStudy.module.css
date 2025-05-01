@@ -1,10 +1,21 @@
 .container {
   display: flex;
   height: 100vh;
-  background-color: #F6F7FB;
   font-family: "Pretendard", sans-serif;
-  background: linear-gradient(to bottom, #7EFF66 33.33%, #F6F7FB 33.33%);
+  background: linear-gradient(to bottom, #7eff66 33.33%, #f6f7fb 33.33%);
   overflow: hidden;
+  position: relative;
+}
+
+/* 로고 및 헤더 */
+
+.logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: auto;
+  z-index: 10;
 }
 
 .header {
@@ -19,6 +30,8 @@
   color: #545454;
 }
 
+/* 폼 전체 구조 */
+
 .formContainer {
   flex-grow: 1;
   padding-top: 80px;
@@ -32,38 +45,62 @@
   border-radius: 16px;
   padding: 32px;
   width: 80%;
+  height: 95%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-label {
+/* 첫번째줄 라벨 모임 */
+.firstLabel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 라벨 목록 */
+.inputContainer {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
   gap: 8px;
 }
+
+/* 라벨 타이틀 */
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #646464;
+}
+
+/* 공통 인풋 스타일 */
 
 input[type="text"],
 input[type="number"],
 input[type="date"],
-select,
-textarea {
+select {
+  width: 100%;
   padding: 10px 14px;
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
-  background-color: #fff;
+  background-color: #f9f9f9;
   box-sizing: border-box;
 }
 
-textarea {
-  resize: vertical;
+/* 공통 텍스트 컬러 설정 */
+input[type="date"],
+select {
+  color: #646464; /* 원하는 글자 색상 */
 }
+
+/* placeholder 기본 회색도 바꾸고 싶다면 */
+input[type="date"]::placeholder {
+  color: #646464;
+}
+
+/* 스터디 모집 기간 */
 
 .dateRange {
   display: flex;
@@ -71,26 +108,88 @@ textarea {
   gap: 10px;
 }
 
-.label {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
+/* 진행 요일 선택지 */
 
-.checkboxGroup {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.checkboxGroup label {
+.dayButtonGroup {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 400;
-  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }
+
+.dayButton {
+  display: flex;
+  flex: 1 0 80px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 80px;
+  height: 60px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.dayButton:hover {
+  background-color: #f0f0f0;
+}
+
+.dayButton input[type="checkbox"] {
+  display: none !important;
+}
+
+.dayButton:has(input[type="checkbox"]:checked) {
+  background-color: #7eff66;
+  border-color: #7eff66;
+}
+
+.dayButton:has(input[type="checkbox"]:checked) .korean,
+.dayButton:has(input[type="checkbox"]:checked) .english {
+  font-weight: bold;
+  color: #202020;
+}
+
+.dayButtonContent {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 요일 텍스트 */
+.korean {
+  color: #333;
+}
+
+.english {
+  font-size: 11px;
+  color: #888;
+}
+
+/* 스터디 설명란 */
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* 제출 버튼 */
 
 button[type="submit"] {
   margin-top: 12px;
