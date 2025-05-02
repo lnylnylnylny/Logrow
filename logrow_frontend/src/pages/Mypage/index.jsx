@@ -2,8 +2,15 @@ import Sidebar from "../Sidebar";
 import styles from "./Mypage.module.css";
 import profile_img from "../../assets/profile_img.png";
 
+// 아이콘
+import { FaGraduationCap } from "react-icons/fa";
+import { IoLinkOutline } from "react-icons/io5";
+import { FaBookOpen } from "react-icons/fa";
+import { GoGear } from "react-icons/go";
+
 export default function Mypage() {
-  // 사용자 데이터 직접 정의
+
+  // 사용자 더미 데이터
   const user = {
     id: 1,
     name: "이나영",
@@ -12,57 +19,74 @@ export default function Mypage() {
     field: "웹 개발",
     username: "nylee01",
     password: "secure1234",
-    email: "",
-    phone: "",
+    email: "abc@gmail.com",
+    phone: "010-0000-0000",
     github: "",
-    profileImg: "", // 없으면 기본 이미지 사용
+    profileImg: "",
+    battery: "",
   };
 
   return (
     <div className={styles.page}>
       <Sidebar />
 
-      <div className={styles.container}>
-        <div className={styles.profile}>
-          <div className={styles.profileHeader}>내 프로필</div>
-          
-          <div className={styles.profileImgWrapper}>
+      <div className={styles.content}>
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>내 프로필</h2>
+
+          <div className={styles.avatar}>
             <img
               src={user.profileImg || profile_img}
               alt="profile"
-              className={styles.profileImg}
+              className={styles.avatarImg}
             />
           </div>
 
-          <div className={styles.info}>
-            <h2>
+          <div className={styles.userInfo}>
+            <h3 className={styles.name}>
               {user.name} <span className={styles.battery}>🔋</span>
-            </h2>
-            <p>{user.email || "이메일을 입력해주세요"}</p>
-            <p>{user.phone || "전화번호를 입력해주세요"}</p>
+            </h3>
+            <p className={styles.email}>{user.email || "이메일을 입력해주세요"}</p>
+            <p className={styles.phone}>{user.phone || "전화번호를 입력해주세요"}</p>
           </div>
 
-          <div className={styles.extra}>
-            <div>
-              <strong>전공</strong><br />
-              {user.major}
+          <div className={styles.details}>
+            <div className={styles.detailItem}>
+              <FaGraduationCap className={styles.icon} />
+              <strong className={styles.value}>{user.major}</strong>
             </div>
-            <div>
-              <a href={user.github || "#"} target="_blank" rel="noreferrer">
-                {user.github || "깃허브 링크를 추가해주세요"}
+            <div className={styles.detailItem}>
+              <IoLinkOutline className={styles.icon} />
+              <a
+                href={user.github || "#"}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.value}
+              >
+                {user.github || "링크를 추가해주세요"}
               </a>
             </div>
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.button}>내 스터디룸</button>
-            <button className={styles.button}>개인정보 수정</button>
-          </div>
-        </div>
+            <button
+              className={styles.iconButton}
+            >
+              <FaBookOpen />
+              <span>내 스터디룸</span>
+            </button>
 
-        <div className={styles.intro}>
+            <button className={styles.iconButton}>
+            <GoGear />
+              개인정보 수정
+            </button>
+          </div>
+        </section>
+
+        <section className={styles.intro}>
+          <GoGear className={styles.introIcon} />
           소개글 작성
-        </div>
+        </section>
       </div>
     </div>
   );
