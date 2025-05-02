@@ -1,15 +1,25 @@
 import Sidebar from "../Sidebar";
 import styles from "./Mypage.module.css";
 import profile_img from "../../assets/profile_img.png";
-import batteryImages from "../../data/batteryData"; // 이 경로에 batteryImages 객체가 있어야 함
+import batteryImages from "../../data/batteryData";
+import { useState } from "react";
 
 // 아이콘
 import { FaGraduationCap } from "react-icons/fa";
 import { IoLinkOutline } from "react-icons/io5";
 import { FaBookOpen } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
+import { MdModeEdit } from "react-icons/md";
 
 export default function Mypage() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [introText, setIntroText] = useState(
+    "안녕하세요. 소개글을 작성하시려면 위에 연필 아이콘을 눌러주세요."
+  );
+
+  const handleEditToggle = () => setIsEditing(true);
+  const handleSave = () => setIsEditing(false);
+
   // 사용자 더미 데이터
   const user = {
     id: 1,
@@ -90,7 +100,32 @@ export default function Mypage() {
           </div>
         </section>
 
-        <section className={styles.intro}>소개글 작성</section>
+        <section className={styles.intro}>
+          <div className={styles.introHeader}>
+            <span className={styles.introTitle}>소개글 작성</span>
+            {!isEditing && (
+              <MdModeEdit
+                className={styles.introEditIcon}
+                onClick={handleEditToggle}
+              />
+            )}
+          </div>
+
+          {isEditing ? (
+            <>
+              <textarea
+                className={styles.introTextarea}
+                value={introText}
+                onChange={(e) => setIntroText(e.target.value)}
+              />
+              <button className={styles.saveButton} onClick={handleSave}>
+                저장
+              </button>
+            </>
+          ) : (
+            <div className={styles.introContent}>{introText}</div>
+          )}
+        </section>
       </div>
     </div>
   );
