@@ -9,7 +9,6 @@ import { FaBookOpen } from "react-icons/fa";
 import { GoGear } from "react-icons/go";
 
 export default function Mypage() {
-
   // 사용자 더미 데이터
   const user = {
     id: 1,
@@ -46,8 +45,12 @@ export default function Mypage() {
             <h3 className={styles.name}>
               {user.name} <span className={styles.battery}>🔋</span>
             </h3>
-            <p className={styles.email}>{user.email || "이메일을 입력해주세요"}</p>
-            <p className={styles.phone}>{user.phone || "전화번호를 입력해주세요"}</p>
+            <p className={styles.email}>
+              {user.email || "이메일을 입력해주세요"}
+            </p>
+            <p className={styles.phone}>
+              {user.phone || "전화번호를 입력해주세요"}
+            </p>
           </div>
 
           <div className={styles.details}>
@@ -69,22 +72,19 @@ export default function Mypage() {
           </div>
 
           <div className={styles.actions}>
-            <button
-              className={styles.iconButton}
-            >
+            <button className={styles.iconButton}>
               <FaBookOpen />
               <span>내 스터디룸</span>
             </button>
 
             <button className={styles.iconButton}>
-            <GoGear />
+              <GoGear />
               개인정보 수정
             </button>
           </div>
         </section>
 
         <section className={styles.intro}>
-          <GoGear className={styles.introIcon} />
           소개글 작성
         </section>
       </div>
