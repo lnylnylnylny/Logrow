@@ -75,7 +75,7 @@
   color: #808080;
 }
 
-/* 디테일(전공, 깃허브) */
+/* 디테일 정보 (전공, 링크) */
 .details {
   border-top: 1px solid #dcdcdc;
   width: 100%;
@@ -88,20 +88,18 @@
 
 .detailItem {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
   align-items: center;
-  gap: 0.2rem;
-  text-align: center;
+  justify-content: space-between;
+  word-break: break-all;
 }
 
-/* 아이콘 공통 스타일 */
+/* 아이콘 공통 */
 .icon {
   font-size: 24px;
   color: #6e6e6e;
 }
 
-/* 전공, 깃허브 값 */
+/* 텍스트 링크 및 값 */
 .value {
   color: #000;
   font-weight: 600;
@@ -112,7 +110,7 @@
   text-decoration: underline;
 }
 
-/* 액션 버튼 영역 */
+/* 버튼 영역 */
 .actions {
   display: flex;
   flex-direction: column;
@@ -121,7 +119,6 @@
   gap: 0.6rem;
 }
 
-/* 아이콘 버튼 (스터디룸) */
 .iconButton {
   display: flex;
   align-items: center;
@@ -140,8 +137,7 @@
   color: #388e3c;
 }
 
-/* 소개글 작성 영역 */
-
+/* 소개글 */
 .intro {
   flex: 3;
   background-color: white;
@@ -154,7 +150,6 @@
   position: relative;
 }
 
-/* 상단 제목과 아이콘 */
 .introHeader {
   display: flex;
   justify-content: space-between;
@@ -176,7 +171,6 @@
   cursor: pointer;
 }
 
-/* 소개글 텍스트 영역 */
 .introContent {
   font-size: 14px;
   color: #444;
@@ -185,7 +179,6 @@
   overflow-y: auto;
 }
 
-/* 수정 시 사용하는 텍스트 박스 */
 .introTextarea {
   width: 100%;
   height: 160px;
@@ -195,4 +188,121 @@
   border-radius: 8px;
   resize: none;
   font-family: inherit;
+}
+
+/* 모달 */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal label {
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modalActions button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.modalActions button:last-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.modalActions button:first-child {
+  background-color: #e0e0e0;
+}
+
+/* 링크 수정 입력 */
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.linkItem {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.linkItem input {
+  flex: 1;
+  padding: 6px;
+  font-size: 14px;
+}
+
+/* 삭제 버튼 (x) */
+.removeLinkButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.removeLinkButton:hover {
+  background-color: #388e3c;
+}
+
+/* 추가 버튼 (+ 링크 추가) */
+.addLinkButton {
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addLinkButton:hover {
+  background-color: #388e3c;
 }

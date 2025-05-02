@@ -20,21 +20,21 @@ export default function Mypage() {
   const handleEditToggle = () => setIsEditing(true);
   const handleSave = () => setIsEditing(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // 사용자 더미 데이터
-  const user = {
-    id: 1,
+  const [user, setUser] = useState({
     name: "이나영",
     birth: "2003-01-01",
     major: "AI빅데이터",
     field: "웹 개발",
-    username: "nylee01",
-    password: "secure1234",
+    username: "lny",
+    password: "1234",
     email: "abc@gmail.com",
     phone: "010-0000-0000",
-    github: "",
+    links: [],
     profileImg: "",
     battery: "3",
-  };
+  });
 
   return (
     <div className={styles.page}>
@@ -71,20 +71,32 @@ export default function Mypage() {
 
           <div className={styles.details}>
             <div className={styles.detailItem}>
+              {/* 전공 */}
               <FaGraduationCap className={styles.icon} />
               <strong className={styles.value}>{user.major}</strong>
             </div>
-            <div className={styles.detailItem}>
-              <IoLinkOutline className={styles.icon} />
-              <a
-                href={user.github || "#"}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.value}
-              >
-                {user.github || "링크를 추가해주세요"}
-              </a>
-            </div>
+
+            {/* 링크 */}
+            {Array.isArray(user.links) && user.links.length > 0 ? (
+              user.links.map((link, i) => (
+                <div key={i} className={styles.detailItem}>
+                  <IoLinkOutline className={styles.icon} />
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.value}
+                  >
+                    {link}
+                  </a>
+                </div>
+              ))
+            ) : (
+              <div className={styles.detailItem}>
+                <IoLinkOutline className={styles.icon} />
+                <span className={styles.value}>링크를 추가해주세요</span>
+              </div>
+            )}
           </div>
 
           <div className={styles.actions}>
@@ -93,7 +105,10 @@ export default function Mypage() {
               <span>내 스터디룸</span>
             </button>
 
-            <button className={styles.iconButton}>
+            <button
+              className={styles.iconButton}
+              onClick={() => setIsModalOpen(true)}
+            >
               <GoGear />
               개인정보 수정
             </button>
@@ -127,6 +142,90 @@ export default function Mypage() {
           )}
         </section>
       </div>
+
+      {isModalOpen && (
+        <div className={styles.modalBackdrop}>
+          <div className={styles.modal}>
+            <h3>개인정보 수정</h3>
+            <label>
+              이름
+              <input
+                type="text"
+                value={user.name}
+                onChange={(e) => setUser({ ...user, name: e.target.value })}
+              />
+            </label>
+            <label>
+              이메일
+              <input
+                type="email"
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+              />
+            </label>
+            <label>
+              전화번호
+              <input
+                type="text"
+                value={user.phone}
+                onChange={(e) => setUser({ ...user, phone: e.target.value })}
+              />
+            </label>
+            <label>
+              전공
+              <input
+                type="text"
+                value={user.major}
+                onChange={(e) => setUser({ ...user, major: e.target.value })}
+              />
+            </label>
+            <label>
+              링크
+              <div className={styles.linkList}>
+                {user.links.map((link, index) => (
+                  <div key={index} className={styles.linkItem}>
+                    <input
+                      type="text"
+                      value={link}
+                      onChange={(e) => {
+                        const updated = [...user.links];
+                        updated[index] = e.target.value;
+                        setUser({ ...user, links: updated });
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className={styles.removeLinkButton} 
+                      onClick={() => {
+                        const updated = user.links.filter(
+                          (_, i) => i !== index
+                        );
+                        setUser({ ...user, links: updated });
+                      }}
+                    >
+                      x
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  className={styles.addLinkButton}
+                  onClick={() =>
+                    setUser({ ...user, links: [...user.links, ""] })
+                  }
+                >
+                  + 링크 추가
+                </button>
+              </div>
+            </label>
+
+            <div className={styles.modalActions}>
+              <button onClick={() => setIsModalOpen(false)}>닫기</button>
+              <button onClick={() => setIsModalOpen(false)}>저장</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
