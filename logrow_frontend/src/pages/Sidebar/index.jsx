@@ -19,7 +19,7 @@ export default function Sidebar() {
       </div>
       <div className={styles.bottomSection}>
         <FaBell color="white" size={24} />
-        <FaUserCircle color="white" size={30} onClick={() => navigate("/login")} />
+        <FaUserCircle color="white" size={30} onClick={() => navigate("/mypage")} />
       </div>
     </div>
   );
