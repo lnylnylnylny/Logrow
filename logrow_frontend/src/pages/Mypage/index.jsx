@@ -1,6 +1,7 @@
 import Sidebar from "../Sidebar";
 import styles from "./Mypage.module.css";
 import profile_img from "../../assets/profile_img.png";
+import batteryImages from "../../data/batteryData"; // 이 경로에 batteryImages 객체가 있어야 함
 
 // 아이콘
 import { FaGraduationCap } from "react-icons/fa";
@@ -22,7 +23,7 @@ export default function Mypage() {
     phone: "010-0000-0000",
     github: "",
     profileImg: "",
-    battery: "",
+    battery: "3",
   };
 
   return (
@@ -43,7 +44,12 @@ export default function Mypage() {
 
           <div className={styles.userInfo}>
             <h3 className={styles.name}>
-              {user.name} <span className={styles.battery}>🔋</span>
+              {user.name}{" "}
+              <img
+                src={batteryImages[user.battery]}
+                alt={`배터리 ${user.battery}`}
+                className={styles.batteryIcon}
+              />
             </h3>
             <p className={styles.email}>
               {user.email || "이메일을 입력해주세요"}
@@ -84,9 +90,7 @@ export default function Mypage() {
           </div>
         </section>
 
-        <section className={styles.intro}>
-          소개글 작성
-        </section>
+        <section className={styles.intro}>소개글 작성</section>
       </div>
     </div>
   );

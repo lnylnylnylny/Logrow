@@ -61,10 +61,12 @@
   color: #000;
 }
 
-.battery {
-  margin-left: 0.4rem;
-  font-size: 16px;
-}
+.batteryIcon {
+    width: 25px;
+    height: 25px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
 
 .email,
 .phone {
