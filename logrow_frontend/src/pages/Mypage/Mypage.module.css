@@ -1,0 +1,308 @@
+/* 전체 레이아웃 */
+.page {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 콘텐츠 래퍼 */
+.content {
+  display: flex;
+  flex: 1;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: #f6f7fb;
+  box-sizing: border-box;
+}
+
+/* 프로필 카드 */
+.card {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  padding: 10px;
+}
+
+/* 카드 제목 */
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  align-self: stretch;
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 0.5rem;
+}
+
+/* 프로필 이미지 */
+.avatarImg {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 유저 정보 */
+.userInfo {
+  text-align: center;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.batteryIcon {
+  width: 25px;
+  height: 25px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.email,
+.phone {
+  margin: 0.2rem;
+  font-size: 14px;
+  color: #808080;
+}
+
+/* 디테일 정보 (전공, 링크) */
+.details {
+  border-top: 1px solid #dcdcdc;
+  width: 100%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  word-break: break-all;
+}
+
+/* 아이콘 공통 */
+.icon {
+  font-size: 24px;
+  color: #6e6e6e;
+}
+
+/* 텍스트 링크 및 값 */
+.value {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.value:hover {
+  text-decoration: underline;
+}
+
+/* 버튼 영역 */
+.actions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1rem;
+  gap: 0.6rem;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4caf50;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.iconButton:hover {
+  color: #388e3c;
+}
+
+/* 소개글 */
+.intro {
+  flex: 3;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+.introHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dcdcdc;
+  flex-shrink: 0;
+}
+
+.introTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.introEditIcon {
+  font-size: 20px;
+  color: #6e6e6e;
+  cursor: pointer;
+}
+
+.introContent {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.introTextarea {
+  width: 100%;
+  height: 160px;
+  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: none;
+  font-family: inherit;
+}
+
+/* 모달 */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal label {
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modalActions button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.modalActions button:last-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.modalActions button:first-child {
+  background-color: #e0e0e0;
+}
+
+/* 링크 수정 입력 */
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.linkItem {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.linkItem input {
+  flex: 1;
+  padding: 6px;
+  font-size: 14px;
+}
+
+/* 삭제 버튼 (x) */
+.removeLinkButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.removeLinkButton:hover {
+  background-color: #388e3c;
+}
+
+/* 추가 버튼 (+ 링크 추가) */
+.addLinkButton {
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addLinkButton:hover {
+  background-color: #388e3c;
+}

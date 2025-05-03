@@ -11,6 +11,7 @@ import Review from "./pages/Mystudy/components/Review";
 import addStudy from "./pages/addStudy";
 import Login from "./pages/Login";
 import Join from "./pages/Join";
+import Mypage from "./pages/Mypage";
 
 let router = createBrowserRouter([
   {
@@ -55,6 +56,11 @@ let router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "mypage",
+        Component: Mypage,
+      },
+
     ],
   }
 ]);
