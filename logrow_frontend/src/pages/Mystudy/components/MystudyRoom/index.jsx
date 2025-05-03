@@ -1,5 +1,7 @@
 import styles from "./MystudyRoom.module.css";
 import Bookmark from "../../../../assets/bookmark.svg";
+import { studyData } from '../../../../data/addStudyData';
+import StudyCard from "./StudyCard";
 
 export default function MystudyRoom() {
   return (
@@ -10,11 +12,9 @@ export default function MystudyRoom() {
       </div>
 
       <div className={styles.grid}>
-        {/* 추후 RoomCard 컴포넌트 반복 삽입 */}
-        <div className={styles.card}>스터디 카드</div>
-        <div className={styles.card}>스터디 카드</div>
-        <div className={styles.card}>스터디 카드</div>
-        <div className={styles.card}>스터디 카드</div>
+        {studyData.map((study) => (
+          <StudyCard key={study.id} study={study} />
+        ))}
       </div>
     </div>
   );
