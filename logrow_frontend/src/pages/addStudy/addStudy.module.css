@@ -1,7 +1,6 @@
 .container {
   display: flex;
   height: 100vh;
-  font-family: "Pretendard", sans-serif;
   background: linear-gradient(to bottom, #7eff66 33.33%, #f6f7fb 33.33%);
   overflow: hidden;
   position: relative;
@@ -27,7 +26,7 @@
   border-radius: 12px 12px 0 0;
   font-size: 20px;
   font-weight: bold;
-  color: #545454;
+  color: #202020;
 }
 
 /* 폼 전체 구조 */
@@ -42,7 +41,6 @@
 
 .form {
   background-color: #fff;
-  border-radius: 16px;
   padding: 32px;
   width: 80%;
   height: 95%;
@@ -50,6 +48,18 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
+}
+
+.form::-webkit-scrollbar {
+  width: 6px;
+}
+.form::-webkit-scrollbar-thumb {
+  background-color: #b2b2b2;
+  border-radius: 3px;
+}
+.form::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* 첫번째줄 라벨 모임 */
@@ -70,7 +80,7 @@
 .label {
   font-size: 14px;
   font-weight: 700;
-  color: #646464;
+  color: #666;
 }
 
 /* 공통 인풋 스타일 */
@@ -81,19 +91,17 @@ input[type="date"],
 select {
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #ddd;
+  border: 1px solid #b2b2b2;
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   background-color: #f9f9f9;
   box-sizing: border-box;
-  color: #646464;
+  color: #555;
 }
 
-
-/* placeholder 기본 회색도 바꾸고 싶다면 */
 input[type="date"]::placeholder {
-  color: #646464;
+  color: #555;
 }
 
 /* 스터디 모집 기간 */
@@ -119,7 +127,7 @@ input[type="date"]::placeholder {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
+  border: 1px solid #b2b2b2;
   border-radius: 8px;
   padding: 6px 12px;
   width: 80px;
@@ -163,7 +171,7 @@ input[type="date"]::placeholder {
 
 /* 요일 텍스트 */
 .korean {
-  color: #646464;
+  color: #555;
 }
 
 .english {
@@ -174,15 +182,40 @@ input[type="date"]::placeholder {
 /* 스터디 설명란 */
 textarea {
   width: 100%;
-  height: 250px;
+  height: 100px;
   padding: 10px 14px;
-  border: 1px solid #ddd;
+  border: 1px solid #b2b2b2;
   border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   background-color: #f9f9f9;
   box-sizing: border-box;
   resize: none;
+}
+
+/* 스터디 4단계 */
+.taskGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taskInput label {
+  font-size: 13px;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.taskInput input {
+  padding: 10px 14px;
+  border: 1px solid #b2b2b2;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  color: #202020;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* 제출 버튼 */
