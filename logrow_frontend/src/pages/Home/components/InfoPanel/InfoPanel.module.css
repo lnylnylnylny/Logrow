@@ -1,0 +1,66 @@
+.infoCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Pretendard";
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%; 
+  box-sizing: border-box;
+}
+
+.section {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sectionContent {
+  font-size: 14px;
+  color: #555;
+  white-space: pre-line;
+  line-height: 1.6;
+
+  max-height: 120px;         /* 적절한 높이 (원하면 조절 가능) */
+  overflow-y: auto;          /* 세로 스크롤 허용 */
+  padding-right: 4px;
+}
+
+.button {
+  margin-top: auto;
+  background-color: #7eff66;
+  color: #202020;
+  font-weight: bold;
+  padding: 14px 0;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background-color: #6ee05b;
+}
+
+.placeholder {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 16px;
+  justify-content: center;
+}

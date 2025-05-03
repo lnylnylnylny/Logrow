@@ -1,0 +1,234 @@
+.calendarPanel{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* CalendarHeader */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+/* 로고 */
+.logoSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.logo {
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 32px;
+}
+
+.year {
+  color: #202020;
+  background: #7eff66;
+  border-radius: 6px;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.study_calendar {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2d2d2d;
+  font-family: "Pretendard";
+}
+
+/* 월별 슬라이더 */
+.sliderWrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 10px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.monthSwiper {
+  width: 100%;
+}
+
+.monthIcon {
+  width: 110px; 
+  height: 75px;
+  border-radius: 8px;
+  background-color: #eaeaea;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.monthIcon:hover {
+  transform: scale(1.05);
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto !important;
+  flex-shrink: 0;
+}
+
+.active {
+  background-color: #7eff66;
+  border-radius: 8px;
+}
+
+/* 오늘 날짜 */
+.todayBox {
+  flex-grow: 1;
+  margin: 5px 10px;
+  border: 1px solid #d7d7d7;
+  background-color: #fcfcfc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  gap: 2px;
+}
+
+.todayLabel {
+  font-size: 10px;
+  color: #888;
+}
+
+.todayText {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+/* CalendarGrid */
+
+/* 전체 캘린더 컨테이너 */
+.calendarContainer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 98.5%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+/* 요일 헤더 (Mon ~ Sun) */
+.headerRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #f5f5f5;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.dayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e0e0e0;
+}
+
+.dayCell:last-child {
+  border-right: none;
+}
+
+/* 달력 본체 그리드 */
+.bodyGrid {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr); /* 최대 6주 */
+  height: 100%;
+}
+
+/* 각 주 단위 행 */
+.weekRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+  height: 98px;
+  border-top: 1px solid #eee;
+}
+
+/* 날짜 셀 */
+.daySlot {
+  position: relative;
+  padding: 4px 6px;
+  border-right: 1px solid #eee;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.daySlot:last-child {
+  border-right: none;
+}
+
+.dateNumber {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+  margin-bottom: 2px;
+  z-index: 1;
+}
+
+.slotContent {
+  flex-grow: 1;
+  position: relative;
+  z-index: 0;
+}
+
+/* 스터디 바 */
+.studyBar {
+  position: absolute;
+  height: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.studyText {
+  font-weight: 500;
+}
