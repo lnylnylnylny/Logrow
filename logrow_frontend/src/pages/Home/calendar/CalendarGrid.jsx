@@ -1,10 +1,7 @@
 import "./CalendarPanel/CalendarPanel.css";
-import { studyData, typeColorMap } from "./CalendarPanel/data/addStudyData";
+import { studyData, typeColorMap } from "../../../data/addStudyData";
 import CalendarBlock from "./CalendarBlock";
-import {
-  getFirstCalendarDate,
-  getCellDate,
-} from "./CalendarUtils";
+import { getFirstCalendarDate, getCellDate } from "./CalendarUtils";
 
 export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
   const year = selectedDate.getFullYear();
@@ -98,7 +95,8 @@ export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
                     setSelectedStudy(fullStudy);
                   }}
                   style={{
-                    backgroundColor: bar.color,
+                    backgroundColor: bar.color.bg,
+                    color: bar.color.color,
                     left: `${bar.leftPercent}%`,
                     width: `${bar.widthPercent}%`,
                     top: `${24 + i * 24}px`,

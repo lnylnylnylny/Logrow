@@ -1,6 +1,6 @@
 import "./CalendarPanel/CalendarPanel.css";
 import logo from "../../../assets/logo.svg";
-import monthData from "./CalendarPanel/data/monthData";
+import monthData from "../../../data/monthData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import "swiper/css";
