@@ -15,10 +15,10 @@ export default function Sidebar() {
       <div className={styles.topSection}>
         <img src={mini_logo} className={styles.logo} alt="mini_logo" onClick={() => navigate("/")} />
         <CiSquarePlus color="white" size={30} onClick={() => navigate("/addstudy")} />
-        <FaBookOpen color="white" size={24} />
+        <FaBookOpen color="white" size={24} onClick={() => navigate("/mystudy")}/>
       </div>
       <div className={styles.bottomSection}>
-        <FaBell color="white" size={24} />
+        <FaBell color="white" size={24} onClick={() => navigate("/login")}/>
         <FaUserCircle color="white" size={30} onClick={() => navigate("/mypage")} />
       </div>
     </div>

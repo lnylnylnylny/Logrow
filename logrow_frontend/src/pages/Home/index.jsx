@@ -1,5 +1,5 @@
-import Sidebar from './components/Sidebar';
-import InfoPanel from './components/InfoPanel';
+import Sidebar from '../Sidebar';
+import InfoPanel from './InfoPanel';
 import CalendarPanel from './calendar/CalendarPanel';
 import styles from "./Home.module.css";
 import { useState } from "react";

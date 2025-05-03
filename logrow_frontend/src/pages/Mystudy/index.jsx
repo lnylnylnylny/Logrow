@@ -3,7 +3,7 @@ import NavigationTabs from "./components/NavigationTabs";
 import styles from "./Mystudy.module.css";
 import { Outlet } from "react-router-dom";
 
-export default function MyStudy() {
+export default function Mystudy() {
   return (
     <div className={styles.container}>
       <Sidebar />
