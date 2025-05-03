@@ -9,6 +9,12 @@ const studyData = [
     studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
     studyParticipants: 5,
     mode: "온라인",
+    mainTask: [
+      { step: 1, title: "회원가입 및 로그인 기능 구현", done: false },
+      { step: 2, title: "게시판 CRUD 기능 구현", done: false },
+      { step: 3, title: "댓글 기능 구현", done: false },
+      { step: 4, title: "프로필 수정 기능 구현", done: false },
+    ],
   },
   {
     id: 2,
@@ -20,6 +26,28 @@ const studyData = [
     studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
     studyParticipants: 5,
     mode: "오프라인",
+    mainTask: [
+      {
+        step: 1,
+        title: "회원가입 및 로그인 기능 구현",
+        done: false,
+        subTasks: [
+          { text: "UI 설계 완료", done: true },
+          { text: "firebase 연동", done: false },
+        ],
+      },
+      {
+        step: 2,
+        title: "게시판 CRUD 기능 구현",
+        done: false,
+        subTasks: [
+          { text: "UI 설계 완료22", done: true },
+          { text: "firebase 연동22", done: false },
+        ],
+      },
+      { step: 3, title: "댓글 기능 구현", done: false },
+      { step: 4, title: "프로필 수정 기능 구현", done: false },
+    ],
   },
   {
     id: 3,

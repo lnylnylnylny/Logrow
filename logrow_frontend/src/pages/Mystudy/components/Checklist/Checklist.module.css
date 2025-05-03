@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #b2b2b2;
+}
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #202020;
+}
+
+.checklistContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+}
+
+.navBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navBtns button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  transition: transform 0.2s ease;
+}
+
+.navBtns button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.navBtns button:hover:not(:disabled) {
+  transform: scale(1.2);
+}
