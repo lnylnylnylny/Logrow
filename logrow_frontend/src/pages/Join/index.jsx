@@ -30,8 +30,8 @@ export default function Join() {
           </div>
 
           <div className={styles.inputGroup}>
-            <label>학번</label>
-            <input type="text" placeholder="학번을 입력하세요." />
+            <label>관심분야</label>
+            <input type="text" placeholder="ex) UI, frontend, backend" />
           </div>
 
           <div className={styles.inputGroup}>

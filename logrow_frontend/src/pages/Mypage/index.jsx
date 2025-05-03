@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar";
 import styles from "./Mypage.module.css";
 import profile_img from "../../assets/profile_img.png";
 import batteryImages from "../../data/batteryData";
+import userData from "../../data/userData";
 import { useState } from "react";
 
 // 아이콘
@@ -21,20 +22,9 @@ export default function Mypage() {
   const handleSave = () => setIsEditing(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   // 사용자 더미 데이터
-  const [user, setUser] = useState({
-    name: "이나영",
-    birth: "2003-01-01",
-    major: "AI빅데이터",
-    field: "웹 개발",
-    username: "lny",
-    password: "1234",
-    email: "abc@gmail.com",
-    phone: "010-0000-0000",
-    links: [],
-    profileImg: "",
-    battery: "3",
-  });
+  const [user, setUser] = useState(userData);
 
   return (
     <div className={styles.page}>
