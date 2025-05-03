@@ -1,5 +1,5 @@
 import styles from "./StudyCard.module.css";
-import { typeColorMap } from "../../../../data/addStudyData";
+import { typeColorMap } from "../../../../data/typeColorData";
 
 export default function StudyCard({ study }) {
   const typeStyle = typeColorMap[study.studyType];

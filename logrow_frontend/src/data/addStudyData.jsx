@@ -6,14 +6,15 @@ const studyData = [
     startDate: "2025-05-01",
     endDate: "2025-05-10",
     day: ["월", "수", "금"],
-    studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
+    studyDescription:
+      "React를 활용해 팀 기반으로 웹 애플리케이션을 직접 개발합니다.",
     studyParticipants: 5,
     mode: "온라인",
     mainTask: [
-      { step: 1, title: "회원가입 및 로그인 기능 구현", done: false },
-      { step: 2, title: "게시판 CRUD 기능 구현", done: false },
-      { step: 3, title: "댓글 기능 구현", done: false },
-      { step: 4, title: "프로필 수정 기능 구현", done: false },
+      { step: 1, title: "프로젝트 기획 및 요구사항 정리", done: false },
+      { step: 2, title: "React 컴포넌트 설계 및 구현", done: false },
+      { step: 3, title: "API 연동 및 상태 관리", done: false },
+      { step: 4, title: "최종 배포 및 발표 준비", done: false },
     ],
   },
   {
@@ -23,30 +24,39 @@ const studyData = [
     startDate: "2025-05-01",
     endDate: "2025-05-03",
     day: ["월", "수", "금"],
-    studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
+    studyDescription:
+      "React 기본 개념부터 실습까지 함께 공부하는 주간 스터디입니다.",
     studyParticipants: 5,
     mode: "오프라인",
     mainTask: [
       {
         step: 1,
-        title: "회원가입 및 로그인 기능 구현",
+        title: "JSX 및 컴포넌트 기초 학습",
         done: false,
         subTasks: [
-          { text: "UI 설계 완료", done: true },
-          { text: "firebase 연동", done: false },
+          { text: "JSX 문법 학습", done: true },
+          { text: "함수형 컴포넌트 실습", done: false },
         ],
       },
       {
         step: 2,
-        title: "게시판 CRUD 기능 구현",
+        title: "Props와 State 이해",
         done: false,
         subTasks: [
-          { text: "UI 설계 완료22", done: true },
-          { text: "firebase 연동22", done: false },
+          { text: "Props 전달 실습", done: true },
+          { text: "State 변경과 렌더링 실습", done: false },
         ],
       },
-      { step: 3, title: "댓글 기능 구현", done: false },
-      { step: 4, title: "프로필 수정 기능 구현", done: false },
+      {
+        step: 3,
+        title: "useEffect 훅과 사이드 이펙트",
+        done: false,
+      },
+      {
+        step: 4,
+        title: "간단한 Todo 앱 만들기",
+        done: false,
+      },
     ],
   },
   {
@@ -56,9 +66,15 @@ const studyData = [
     startDate: "2025-05-01",
     endDate: "2025-05-03",
     day: ["월", "수", "금"],
-    studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
+    studyDescription:
+      "매일 작은 목표를 달성하며 개발 습관을 기르는 3일 챌린지입니다.",
     studyParticipants: 5,
     mode: "온라인",
+    mainTask: [
+      { step: 1, title: "첫 날 목표 설정 및 일정 등록", done: false },
+      { step: 2, title: "정해진 시간에 미션 수행 및 인증", done: false },
+      { step: 3, title: "최종 결과 공유 및 피드백", done: false },
+    ],
   },
   {
     id: 4,
@@ -67,22 +83,17 @@ const studyData = [
     startDate: "2025-04-01",
     endDate: "2025-04-13",
     day: ["월", "수", "금"],
-    studyDescription: "React로 풀스택 프로젝트를 함께 합니다.",
+    studyDescription:
+      "프론트엔드 개발자 취업 대비를 위한 모의 코딩 인터뷰를 진행합니다.",
     studyParticipants: 5,
     mode: "오프라인",
+    mainTask: [
+      { step: 1, title: "기술 스택 기반 예상 질문 정리", done: false },
+      { step: 2, title: "1:1 모의 인터뷰 진행", done: false },
+      { step: 3, title: "면접 피드백 정리 및 개선", done: false },
+      { step: 4, title: "최종 실전 인터뷰 시뮬레이션", done: false },
+    ],
   },
 ];
 
-const typeColorMap = {
-  프로젝트: { bg: "#F97474", color: "#333" },
-  스터디: { bg: "#B2F2BB", color: "#333" },
-  챌린지: { bg: "#F9B3D1", color: "#333" },
-  토론: { bg: "#AEE3FA", color: "#333" },
-  실습: { bg: "#DFF5B0", color: "#333" },
-  멘토링: { bg: "#FFEE88", color: "#333" },
-  모의면접: { bg: "#D4C4FB", color: "#333" },
-  온라인: { bg: "#333", color: "#7eff66" },
-  오프라인: { bg: "#7eff66", color: "#333" },
-};
-
-export { studyData, typeColorMap };
+export { studyData };

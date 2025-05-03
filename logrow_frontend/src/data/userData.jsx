@@ -1,5 +1,3 @@
-// src/data/userData.jsx
-
 const userData = {
     name: "이나영",
     birth: "2003-01-01",
