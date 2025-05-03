@@ -1,0 +1,78 @@
+.footerContainer {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    width: 100%;
+    height: 250px;
+    overflow: hidden; /* ✅ 외부 스크롤 방지 */
+  }
+  
+  .footerHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b2b2b2;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .footerContent {
+    max-height: 160px; /* ✅ 내부 스크롤 영역 높이 */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-right: 6px; /* 스크롤 안 겹치게 */
+  }
+  
+  /* 스크롤바 커스터마이징 */
+  .footerContent::-webkit-scrollbar {
+    width: 6px;
+  }
+  .footerContent::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  .footerContent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  .footerRow {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0;
+  }
+  
+  .footerCell {
+    font-size: 14px;
+    color: #333;
+    padding: 0 10px;
+  }
+  
+  .footerCell.name {
+    font-weight: 600;
+    width: 150px;
+  }
+  
+  .footerCell.battery {
+    width: 60px;
+    text-align: center;
+  }
+  
+  .footerCell.feedback {
+    flex: 1;
+  }
+  
