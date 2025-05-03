@@ -8,6 +8,7 @@ import MystudyRoom from "./pages/Mystudy/components/MystudyRoom";
 import Checklist from "./pages/Mystudy/components/Checklist";
 import GrowUp from "./pages/Mystudy/components/GrowUp";
 import Review from "./pages/Mystudy/components/Review";
+import addStudy from "./pages/addStudy";
 
 let router = createBrowserRouter([
   {
@@ -19,11 +20,15 @@ let router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: "addstudy",
+        Component: addStudy,
+      },
+      {
         path: "mystudy",
         Component: Mystudy,
         children: [
           {
-            index: true, // /mystudy
+            index: true, 
             Component: MystudyRoom,
           },
           {
