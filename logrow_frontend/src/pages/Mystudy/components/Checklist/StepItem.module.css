@@ -42,7 +42,11 @@
   color: #444;
 }
 
-/* ✅ 할 일 리스트 영역 */
+.deleteBtn{
+  cursor: pointer;
+  font-size: 20px;
+  color: #444;
+}
 .taskList {
   display: flex;
   flex-direction: column;
@@ -52,7 +56,7 @@
   padding-right: 5px;
 }
 
-/* ✅ 커스텀 스크롤바 */
+
 .taskList::-webkit-scrollbar {
   width: 6px;
 }

@@ -37,7 +37,7 @@ export default function StepItem({
               placeholder="할 일을 입력하세요"
             />
 
-            <AiOutlineDelete onClick={() => onDelete(i)} />
+            <AiOutlineDelete className={styles.deleteBtn} onClick={() => onDelete(i)} />
           </li>
         ))}
       </ul>
