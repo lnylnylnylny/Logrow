@@ -1,6 +1,7 @@
 import Sidebar from "../Sidebar";
 import NavigationTabs from "./components/NavigationTabs";
 import styles from "./Mystudy.module.css";
+import { Outlet } from "react-router-dom";
 
 export default function MyStudy() {
   return (
@@ -11,8 +12,7 @@ export default function MyStudy() {
         <NavigationTabs />
 
         <div className={styles.mainContent}>
-          {/* 👉 여기에서 각 화면 (Room, Checklist 등)을 렌더링 */}
-            내용
+            <Outlet />
         </div>
       </div>
     </div>
