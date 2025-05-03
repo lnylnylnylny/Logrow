@@ -9,6 +9,8 @@ import Checklist from "./pages/Mystudy/components/Checklist";
 import GrowUp from "./pages/Mystudy/components/GrowUp";
 import Review from "./pages/Mystudy/components/Review";
 import addStudy from "./pages/addStudy";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
 
 let router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ let router = createBrowserRouter([
       {
         path: "addstudy",
         Component: addStudy,
+      },
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "join",
+        Component: Join,
       },
       {
         path: "mystudy",
@@ -46,9 +56,10 @@ let router = createBrowserRouter([
         ],
       },
     ],
-  },
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={router} />
 );
+
