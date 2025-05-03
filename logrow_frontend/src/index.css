@@ -1,3 +1,5 @@
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/AppleSDGothicNeo/AppleSDGothicNeo.css');
+
 * {
   box-sizing: border-box;
 
@@ -10,4 +12,5 @@ body,
   padding: 0;
   height: 100%;
   background-color: #F6F7FB;
+  font-family: 'Apple SD Gothic Neo',sans-serif;
 }
