@@ -1,4 +1,5 @@
 import styles from "./InfoPanel.module.css";
+import batteryImages from "../../../data/batteryData";
 
 const InfoSection = ({ title, children }) => (
   <div className={styles.section}>
@@ -18,6 +19,15 @@ export default function InfoPanel({ study }) {
 
   return (
     <div className={styles.infoCard}>
+      <InfoSection title="👤 스터디장">
+        {study.owner?.name}
+        <img
+          src={batteryImages[Number(study.owner?.battery)]}
+          alt={`배터리 ${study.owner?.battery}`}
+          className={styles.batteryIcon}
+        />
+      </InfoSection>
+
       <InfoSection title="📘 스터디명">{study.studyName}</InfoSection>
       <InfoSection title="🧭 유형">{study.studyType}</InfoSection>
       <InfoSection title="🗓️ 기간">

@@ -1,5 +1,5 @@
 .infoCard {
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -7,12 +7,12 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 100%; 
+  height: 100%;
   box-sizing: border-box;
 }
 
 .section {
-  background-color: #fafafa;
+  background-color: #fefefe;
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #eee;
@@ -23,7 +23,7 @@
 
 .sectionTitle {
   font-weight: 600;
-  color: #333;
+  color: #202020;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
@@ -32,13 +32,20 @@
 
 .sectionContent {
   font-size: 14px;
-  color: #555;
+  color: #666;
   white-space: pre-line;
   line-height: 1.6;
-
-  max-height: 120px;         /* 적절한 높이 (원하면 조절 가능) */
-  overflow-y: auto;          /* 세로 스크롤 허용 */
+  max-height: 120px;
+  overflow-y: auto;
   padding-right: 4px;
+}
+
+/* 스터디장 배터리 아이콘 */
+.batteryIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 .button {
@@ -54,7 +61,7 @@
 }
 
 .button:hover {
-  background-color: #6ee05b;
+  background-color: #6ae35a;
 }
 
 .placeholder {

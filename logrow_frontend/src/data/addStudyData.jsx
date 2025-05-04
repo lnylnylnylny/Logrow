@@ -1,6 +1,10 @@
 const studyData = [
   {
     id: 1,
+    owner: {
+      name: "이나영",
+      battery: "3"
+    },
     studyName: "React 프로젝트",
     studyType: "프로젝트",
     startDate: "2025-05-01",
@@ -19,6 +23,10 @@ const studyData = [
   },
   {
     id: 2,
+    owner: {
+      name: "삼나영",
+      battery: "3"
+    },
     studyName: "React 스터디",
     studyType: "스터디",
     startDate: "2025-05-01",
@@ -61,6 +69,10 @@ const studyData = [
   },
   {
     id: 3,
+    owner: {
+      name: "사나영",
+      battery: "2"
+    },
     studyName: "챌린지",
     studyType: "챌린지",
     startDate: "2025-05-01",
