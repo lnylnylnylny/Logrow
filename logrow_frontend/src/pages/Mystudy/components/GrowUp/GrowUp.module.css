@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  gap: 30px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #b2b2b2;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #202020;
+}
+
+.mainContent {
+  display: flex;
+  gap: 40px;
+}
+
+.leftPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardTitle,
+.stepTitle,
+.treeTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.cardList,
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rightPanel {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+}

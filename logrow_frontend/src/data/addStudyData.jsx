@@ -35,10 +35,10 @@ const studyData = [
     studyParticipants: 5,
     mode: "온라인",
     mainTask: [
-      { step: 1, title: "프로젝트 기획 및 요구사항 정리", done: false },
-      { step: 2, title: "React 컴포넌트 설계 및 구현", done: false },
-      { step: 3, title: "API 연동 및 상태 관리", done: false },
-      { step: 4, title: "최종 배포 및 발표 준비", done: false },
+      { step: 1, title: "프로젝트 기획 및 요구사항 정리", done: true },
+      { step: 2, title: "React 컴포넌트 설계 및 구현", done: true },
+      { step: 3, title: "API 연동 및 상태 관리", done: true },
+      { step: 4, title: "최종 배포 및 발표 준비", done: true },
     ],
   },
   {

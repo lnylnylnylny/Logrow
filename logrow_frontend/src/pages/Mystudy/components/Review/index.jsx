@@ -1,8 +1,14 @@
+import styles from "./Review.module.css";
+import Bookmark from "../../../../assets/Bookmark.svg";
+
 export default function Review() {
     return (
-        <div>
-            <h1>Review</h1>
-            <p>Welcome to the Review section!</p>
-        </div>
+        <div className={styles.container}>
+      <div className={styles.header}>
+        <img src={Bookmark} alt="Bookmark" className={styles.icon} />
+        <div className={styles.title}>Review</div>
+      </div>
+
+    </div>
     );
 }
