@@ -8,10 +8,9 @@ export default function StudyCard({ study }) {
   return (
     <div className={styles.card}>
       <div className={styles.thumbnail}>
-        {/* 실제 구현 시 이미지 경로 연결 */}
         <img
-          src={`https://placehold.co/600x340?text=${study.studyName}`}
-          alt="썸네일"
+          src={typeStyle.img}
+          alt={`${study.studyType} 썸네일`}
           className={styles.image}
         />
       </div>
