@@ -3,17 +3,15 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-    background-color: #f6f7fb;
   }
   
   .sidebar {
     flex-shrink: 0;
     height: 100%;
-    /* Sidebar 내부에서 width: 50px 이미 설정됨 */
   }
   
   .infoPanel {
-    width: 350px; /* 또는 flex: 1.5 로 비율 지정도 가능 */
+    width: 400px; /* 또는 flex: 1.5 로 비율 지정도 가능 */
     flex-shrink: 0;
     padding: 20px 10px 20px 20px;
     box-sizing: border-box;
