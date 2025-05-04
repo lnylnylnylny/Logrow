@@ -7,6 +7,7 @@
   gap: 30px;
 }
 
+/* 헤더 부분 */
 .header {
   display: flex;
   align-items: center;
@@ -26,6 +27,7 @@
   color: #202020;
 }
 
+/* 본문 틀 제작 */
 .mainContent {
   display: flex;
   gap: 40px;
@@ -41,9 +43,15 @@
 .cardTitle,
 .stepTitle,
 .treeTitle {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1a1a1a;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #9eff6d;
+  background-color: #1a1a1a;
+  padding: 6px 14px;
+  border-radius: 12px;
+  width: fit-content;
+  justify-content: center;
 }
 
 .cardList,
@@ -58,4 +66,108 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   padding: 20px;
+}
+
+/* 본문 내용물 부분 */
+
+.cardList {
+  display: flex;
+  gap: 0;
+  position: relative;
+  flex-direction: row;
+  justify-content: flex-start; /* 기존: center → 수정 */
+  padding-left: 30px; /* 좌측 여백 추가 */
+}
+
+.cardImage {
+  transition: transform 0.3s ease;
+  z-index: 1;
+  object-fit: contain;
+  width: 140px;
+  height: 180px;
+  margin-left: -50px;
+}
+
+/* 첫 번째는 margin-left 없음 */
+.cardImage:first-child {
+  margin-left: 0;
+}
+
+/* 현재 단계 카드만 튀어나오게 */
+.cardImage.active {
+  transform: scale(1.1) translateY(-10px);
+  z-index: 10;
+}
+
+.cardImage:hover {
+  transform: scale(1.2);
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.taskItem {
+  background: #f7fff7;
+  border-left: 6px solid #66bb6a;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stepLabel {
+  color: #999;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.taskItem.done {
+  background: #e4ffe7;
+  border-color: #4caf50;
+}
+
+.stepLabel {
+  font-size: 13px;
+  font-weight: bold;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.stepText {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.treePreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 250px;
+}
+
+.bigCardImage {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+}
+
+.placeholder {
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  font-style: italic;
 }

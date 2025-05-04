@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 10px 20px;
   gap: 30px;
+  height: 100%;
 }
 
 .header {
@@ -30,6 +31,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  overflow-y: auto;
+  padding-right: 8px; 
+
+  flex-grow: 1; /* 남은 공간을 채움 */
+  min-height: 0;
 }
 
 .card {

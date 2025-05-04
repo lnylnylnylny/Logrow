@@ -27,7 +27,9 @@ export default function GrowUp() {
                 key={card.step}
                 src={card.step <= currentStep ? card.colored : card.gray}
                 alt={`단계 ${card.step}`}
-                className={styles.cardImage}
+                className={`${styles.cardImage} ${styles[`card${card.step}`]} ${
+                  card.step === currentStep ? styles.active : ""
+                }`}
               />
             ))}
           </div>
