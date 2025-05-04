@@ -48,6 +48,8 @@
   .footerContent::-webkit-scrollbar-track {
     background-color: transparent;
   }
+
+
   
   .footerRow {
     display: flex;

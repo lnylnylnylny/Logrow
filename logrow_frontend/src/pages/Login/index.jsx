@@ -1,13 +1,17 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styles from "./Login.module.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.loginCard}>
         <div className={styles.header}>
           <p>안녕하세요,</p>
-          <p><strong>logrow 입니다!</strong></p>
+          <p>
+            <strong>logrow 입니다!</strong>
+          </p>
           <p className={styles.subtext}>계정에 로그인하세요.</p>
         </div>
 
@@ -19,10 +23,20 @@ export default function Login() {
 
           <div className={styles.inputGroup}>
             <label htmlFor="password">비밀번호</label>
-            <input id="password" type="password" placeholder="비밀번호를 입력하세요." />
+            <input
+              id="password"
+              type="password"
+              placeholder="비밀번호를 입력하세요."
+            />
           </div>
 
-          <button type="submit" className={styles.loginBtn}>로그인</button>
+          <button
+            type="submit"
+            className={styles.loginBtn}
+            onClick={() => navigate("/")}
+          >
+            로그인
+          </button>
         </form>
 
         <div className={styles.gotoJoin}>

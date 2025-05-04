@@ -11,7 +11,6 @@
   flex: 1;
   padding: 2rem;
   gap: 2rem;
-  background-color: #f6f7fb;
   box-sizing: border-box;
 }
 
@@ -32,9 +31,9 @@
 .cardTitle {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: #202020;
   align-self: stretch;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #b2b2b2;
   padding-bottom: 0.5rem;
 }
 
@@ -45,6 +44,8 @@
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  border-bottom: 1px solid #b2b2b2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* 유저 정보 */
@@ -72,12 +73,12 @@
 .phone {
   margin: 0.2rem;
   font-size: 14px;
-  color: #808080;
+  color: #666;
 }
 
 /* 디테일 정보 (전공, 링크) */
 .details {
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid #b2b2b2;
   width: 100%;
   font-size: 14px;
   display: flex;
@@ -106,9 +107,6 @@
   text-decoration: none;
 }
 
-.value:hover {
-  text-decoration: underline;
-}
 
 /* 버튼 영역 */
 .actions {
@@ -126,7 +124,7 @@
   gap: 0.5rem;
   font-size: 15px;
   font-weight: 600;
-  color: #4caf50;
+  color: #7EFF66 ;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -134,13 +132,13 @@
 }
 
 .iconButton:hover {
-  color: #388e3c;
+  color: #00c76a;
 }
 
 /* 소개글 */
 .intro {
   flex: 3;
-  background-color: white;
+  background-color: #fff;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -155,19 +153,19 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 12px;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #b2b2b2;
   flex-shrink: 0;
 }
 
 .introTitle {
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: #202020;
 }
 
 .introEditIcon {
   font-size: 20px;
-  color: #6e6e6e;
+  color: #666;
   cursor: pointer;
 }
 
@@ -184,10 +182,27 @@
   height: 160px;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #b2b2b2;
   border-radius: 8px;
   resize: none;
   font-family: inherit;
+}
+
+.saveButton {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #7EFF66;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #202020;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.saveButton:hover {
+  background-color: #6ae35a;
 }
 
 /* 모달 */
@@ -205,7 +220,7 @@
 }
 
 .modal {
-  background: white;
+  background: #fff;
   border-radius: 12px;
   padding: 24px;
   width: 400px;
@@ -216,7 +231,7 @@
 
 .modal label {
   font-size: 14px;
-  color: #444;
+  color: #202020;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -224,9 +239,17 @@
 
 .modal input {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #b2b2b2;
   border-radius: 6px;
   font-size: 14px;
+  background-color: #f9f9f9;
+  color: #202020;
+}
+
+.modal input:focus {
+  outline: none;
+  border-color: #7EFF66;
+  box-shadow: 0 0 0 2px rgba(126, 255, 102, 0.2);
 }
 
 .modalActions {
@@ -244,12 +267,13 @@
 }
 
 .modalActions button:last-child {
-  background-color: #4caf50;
-  color: white;
+  background-color: #7EFF66;
+  color: #202020;
 }
 
 .modalActions button:first-child {
   background-color: #e0e0e0;
+  color: #202020;
 }
 
 /* 링크 수정 입력 */
@@ -274,8 +298,8 @@
 
 /* 삭제 버튼 (x) */
 .removeLinkButton {
-  background-color: #4caf50;
-  color: white;
+  background-color: #7EFF66;
+  color: #202020;
   border: none;
   border-radius: 4px;
   padding: 4px 8px;
@@ -286,7 +310,7 @@
 }
 
 .removeLinkButton:hover {
-  background-color: #388e3c;
+  background-color: #6ae35a;
 }
 
 /* 추가 버튼 (+ 링크 추가) */
@@ -295,8 +319,8 @@
   padding: 6px 10px;
   font-size: 13px;
   font-weight: 500;
-  color: white;
-  background-color: #4caf50;
+  color: #202020;
+  background-color: #7EFF66;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -304,5 +328,5 @@
 }
 
 .addLinkButton:hover {
-  background-color: #388e3c;
+  background-color: #6ae35a;
 }

@@ -4,6 +4,7 @@ import profile_img from "../../assets/profile_img.png";
 import batteryImages from "../../data/batteryData";
 import userData from "../../data/userData";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // 아이콘
 import { FaGraduationCap } from "react-icons/fa";
@@ -17,12 +18,13 @@ export default function Mypage() {
   const [introText, setIntroText] = useState(
     "안녕하세요. 소개글을 작성하시려면 위에 연필 아이콘을 눌러주세요."
   );
+  const navigate = useNavigate();
 
   const handleEditToggle = () => setIsEditing(true);
   const handleSave = () => setIsEditing(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   // 사용자 더미 데이터
   const [user, setUser] = useState(userData);
 
@@ -90,7 +92,10 @@ export default function Mypage() {
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.iconButton}>
+            <button
+              className={styles.iconButton}
+              onClick={() => navigate("/mystudy")}
+            >
               <FaBookOpen />
               <span>내 스터디룸</span>
             </button>
@@ -185,7 +190,7 @@ export default function Mypage() {
                     />
                     <button
                       type="button"
-                      className={styles.removeLinkButton} 
+                      className={styles.removeLinkButton}
                       onClick={() => {
                         const updated = user.links.filter(
                           (_, i) => i !== index

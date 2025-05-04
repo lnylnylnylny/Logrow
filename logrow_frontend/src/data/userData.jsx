@@ -7,9 +7,9 @@ const userData = {
     password: "1234",
     email: "abc@gmail.com",
     phone: "010-0000-0000",
-    links: [],
+    links: ["lny@gmail.com"],
     profileImg: "",
-    battery: "3",
+    battery: "0",
   };
   
   export default userData;
