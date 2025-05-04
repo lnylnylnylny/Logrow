@@ -16,6 +16,7 @@ const typeColorMap = {
   모의면접: { bg: "#D4C4FB", color: "#333", img: mockInterviewImg },
   온라인: { bg: "#333", color: "#7eff66" },
   오프라인: { bg: "#7eff66", color: "#333" },
+  혼합: { bg: "#A1FFCE", color: "#333" },
 };
 
 export { typeColorMap };

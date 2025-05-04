@@ -6,7 +6,8 @@ import { studyData } from "../../../../data/addStudyData";
 import { useState } from "react";
 
 export default function Checklist() {
-  const targetStudy = studyData.find((s) => s.id === 2); // 임시 하드코딩
+  const targetStudy = studyData.find((s) => s.id === 1); // 임시 하드코딩
+
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   const [tasksByStep, setTasksByStep] = useState(

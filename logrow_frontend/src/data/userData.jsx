@@ -1,16 +1,84 @@
-const userData = {
-    name: "이나영",
+const userData = [
+  {
+    name: "일나영",
     birth: "2003-01-01",
     major: "AI빅데이터",
     field: "웹 개발",
-    username: "lny",
+    username: "lny1",
     password: "1234",
-    email: "abc@gmail.com",
-    phone: "010-0000-0000",
-    links: ["lny@gmail.com"],
+    email: "lny1@gmail.com",
+    phone: "010-0000-0001",
+    links: [
+      { label: "GitHub", url: "https://github.com/lny1" },
+      { label: "Portfolio", url: "https://lny1.dev" },
+    ],
+    profileImg: "",
+    battery: "1",
+  },
+  {
+    name: "이나영",
+    birth: "2003-01-02",
+    major: "AI빅데이터",
+    field: "데이터 분석",
+    username: "lny2",
+    password: "1234",
+    email: "lny2@gmail.com",
+    phone: "010-0000-0002",
+    links: [
+      { label: "GitHub", url: "https://github.com/lny2" },
+      { label: "Portfolio", url: "https://lny2.dev" },
+    ],
+    profileImg: "",
+    battery: "2",
+  },
+  {
+    name: "삼나영",
+    birth: "2003-01-03",
+    major: "소프트웨어공학",
+    field: "백엔드",
+    username: "lny3",
+    password: "1234",
+    email: "lny3@gmail.com",
+    phone: "010-0000-0003",
+    links: [
+      { label: "GitHub", url: "https://github.com/lny3" },
+      { label: "Portfolio", url: "https://lny3.dev" },
+    ],
+    profileImg: "",
+    battery: "3",
+  },
+  {
+    name: "사나영",
+    birth: "2003-01-04",
+    major: "컴퓨터공학",
+    field: "프론트엔드",
+    username: "lny4",
+    password: "1234",
+    email: "lny4@gmail.com",
+    phone: "010-0000-0004",
+    links: [
+      { label: "GitHub", url: "https://github.com/lny4" },
+      { label: "Portfolio", url: "https://lny4.dev" },
+    ],
+    profileImg: "",
+    battery: "4",
+  },
+  {
+    name: "오나영",
+    birth: "2003-01-05",
+    major: "산업공학",
+    field: "UX/UI 디자인",
+    username: "lny5",
+    password: "1234",
+    email: "lny5@gmail.com",
+    phone: "010-0000-0005",
+    links: [
+      { label: "GitHub", url: "https://github.com/lny5" },
+      { label: "Portfolio", url: "https://lny5.dev" },
+    ],
     profileImg: "",
     battery: "0",
-  };
-  
-  export default userData;
-  
+  },
+];
+
+export default userData;

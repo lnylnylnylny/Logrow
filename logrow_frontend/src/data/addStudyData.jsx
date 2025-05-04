@@ -2,9 +2,29 @@ const studyData = [
   {
     id: 1,
     owner: {
-      name: "이나영",
-      battery: "3"
+      name: "일나영",
+      battery: "1"
     },
+    participants: [
+      {
+        name: "유한솔",
+        role: "FE",
+        battery: "2",
+        feedback: "프로젝트 즐거워요!"
+      },
+      {
+        name: "유이솔",
+        role: "BE",
+        battery: "3",
+        feedback: ""
+      },
+      {
+        name: "유삼솔",
+        role: "디자이너",
+        battery: "1",
+        feedback: ""
+      }
+    ],
     studyName: "React 프로젝트",
     studyType: "프로젝트",
     startDate: "2025-05-01",
@@ -24,8 +44,8 @@ const studyData = [
   {
     id: 2,
     owner: {
-      name: "삼나영",
-      battery: "3"
+      name: "이나영",
+      battery: "2"
     },
     studyName: "React 스터디",
     studyType: "스터디",
@@ -70,8 +90,8 @@ const studyData = [
   {
     id: 3,
     owner: {
-      name: "사나영",
-      battery: "2"
+      name: "삼나영",
+      battery: "3"
     },
     studyName: "챌린지",
     studyType: "챌린지",
@@ -90,6 +110,10 @@ const studyData = [
   },
   {
     id: 4,
+    owner: {
+      name: "사나영",
+      battery: "4"
+    },
     studyName: "모의면접",
     studyType: "모의면접",
     startDate: "2025-04-01",
@@ -104,6 +128,28 @@ const studyData = [
       { step: 2, title: "1:1 모의 인터뷰 진행", done: false },
       { step: 3, title: "면접 피드백 정리 및 개선", done: false },
       { step: 4, title: "최종 실전 인터뷰 시뮬레이션", done: false },
+    ],
+  },
+  {
+    id: 5,
+    owner: {
+      name: "오나영",
+      battery: "0"
+    },
+    studyName: "UI 디자인 실습",
+    studyType: "실습",
+    startDate: "2025-05-07",
+    endDate: "2025-05-20",
+    day: ["화", "목"],
+    studyDescription:
+      "Figma를 활용한 UI 디자인 실습을 통해 실전 감각을 기릅니다.",
+    studyParticipants: 4,
+    mode: "혼합",
+    mainTask: [
+      { step: 1, title: "기초 디자인 시스템 정리", done: false },
+      { step: 2, title: "컴포넌트 제작 실습", done: false },
+      { step: 3, title: "사용자 흐름 디자인", done: false },
+      { step: 4, title: "프로토타입 제작 및 피드백", done: false },
     ],
   },
 ];

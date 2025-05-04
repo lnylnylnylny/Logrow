@@ -56,7 +56,6 @@
   padding-right: 5px;
 }
 
-
 .taskList::-webkit-scrollbar {
   width: 6px;
 }
@@ -94,7 +93,7 @@
 
 .taskText:focus {
   outline: none;
-  border-bottom: 1px solid #7eff66;
+  border: 1px solid #7eff66;
 }
 
 .taskText::placeholder {
