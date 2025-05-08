@@ -43,7 +43,7 @@ let router = createBrowserRouter([
             Component: MystudyRoom,
           },
           {
-            path: "checklist",
+            path: "checklist/:studyId",
             Component: Checklist,
           },
           {

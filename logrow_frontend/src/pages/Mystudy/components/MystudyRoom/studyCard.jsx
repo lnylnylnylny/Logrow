@@ -1,12 +1,17 @@
 import styles from "./StudyCard.module.css";
 import { typeColorMap } from "../../../../data/typeColorData";
+import { useNavigate } from "react-router-dom";
 
 export default function StudyCard({ study }) {
   const typeStyle = typeColorMap[study.studyType] || {};
   const modeStyle = typeColorMap[study.mode] || {};
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/mystudy/checklist/${study.id}`);
+  };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={handleClick}>
       <div className={styles.thumbnail}>
         <img
           src={typeStyle.img}
