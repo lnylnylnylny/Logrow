@@ -8,9 +8,9 @@ import axios from "axios";
 
 // 아이콘
 import { FaGraduationCap, FaBookOpen } from "react-icons/fa";
-import { IoLinkOutline } from "react-icons/io5";
 import { GoGear } from "react-icons/go";
 import { MdModeEdit } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
 
 export default function Mypage() {
   const [user, setUser] = useState(null);
@@ -20,33 +20,36 @@ export default function Mypage() {
   const navigate = useNavigate();
 
   const handleEditToggle = () => setIsEditing(true);
-  const handleSave = () => setIsEditing(false);
+  const handleSave = () => {
+    setUser({ ...user, introduction: introText });
+    setIsEditing(false);
+  };
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-  
+
         const response = await axios.get("/api/mypage", {
           headers: {
-            Authorization: token, // ✅ Bearer 다시 안 붙임
+            Authorization: `Bearer ${token}`,
           },
         });
-  
+
         setUser(response.data);
         setIntroText(response.data.introduction || "");
       } catch (err) {
         console.error("프로필 조회 실패:", err);
       }
     };
-  
+
     fetchProfile();
   }, []);
-  
+
   const handleUpdateProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-  
+
       await axios.put(
         "/api/mypage/update",
         {
@@ -57,12 +60,12 @@ export default function Mypage() {
         },
         {
           headers: {
-            Authorization: token, // ✅ 이것도 Bearer 없이 그대로
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
-  
+
       alert("개인정보가 수정되었습니다!");
       setIsModalOpen(false);
     } catch (err) {
@@ -70,9 +73,14 @@ export default function Mypage() {
       alert("수정 실패");
     }
   };
-  
 
   if (!user) return <div>로딩 중...</div>;
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // 토큰 삭제
+    delete axios.defaults.headers.common["Authorization"]; // 전역 헤더 제거 (선택)
+    navigate("/"); // 홈으로 이동
+  };
 
   return (
     <div className={styles.page}>
@@ -100,47 +108,42 @@ export default function Mypage() {
                 className={styles.batteryIcon}
               />
             </h3>
-            <p className={styles.email}>{user.email || "이메일을 입력해주세요"}</p>
-            <p className={styles.phone}>{user.phone || "전화번호를 입력해주세요"}</p>
+            <p className={styles.email}>
+              {user.email || "이메일을 입력해주세요"}
+            </p>
+            <p className={styles.phone}>
+              {user.phone || "전화번호를 입력해주세요"}
+            </p>
           </div>
 
           <div className={styles.details}>
             <div className={styles.detailItem}>
               <FaGraduationCap className={styles.icon} />
-              <strong className={styles.value}>{user.major || "전공 정보 없음"}</strong>
+              <strong className={styles.value}>
+                {user.major || "전공 정보 없음"}
+              </strong>
             </div>
-
-            {Array.isArray(user.links) && user.links.length > 0 ? (
-              user.links.map((link, i) => (
-                <div key={i} className={styles.detailItem}>
-                  <IoLinkOutline className={styles.icon} />
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.value}
-                  >
-                    {link.label || link.url}
-                  </a>
-                </div>
-              ))
-            ) : (
-              <div className={styles.detailItem}>
-                <IoLinkOutline className={styles.icon} />
-                <span className={styles.value}>링크를 추가해주세요</span>
-              </div>
-            )}
           </div>
 
           <div className={styles.actions}>
-            <button className={styles.iconButton} onClick={() => navigate("/mystudy")}>
+            <button
+              className={styles.iconButton}
+              onClick={() => navigate("/mystudy")}
+            >
               <FaBookOpen />
               <span>내 스터디룸</span>
             </button>
 
-            <button className={styles.iconButton} onClick={() => setIsModalOpen(true)}>
+            <button
+              className={styles.iconButton}
+              onClick={() => setIsModalOpen(true)}
+            >
               <GoGear />
               개인정보 수정
+            </button>
+            <button className={styles.iconButton} onClick={handleLogout}>
+              <IoIosLogOut />
+              로그아웃
             </button>
           </div>
         </section>
@@ -150,7 +153,10 @@ export default function Mypage() {
           <div className={styles.introHeader}>
             <span className={styles.introTitle}>소개글 작성</span>
             {!isEditing && (
-              <MdModeEdit className={styles.introEditIcon} onClick={handleEditToggle} />
+              <MdModeEdit
+                className={styles.introEditIcon}
+                onClick={handleEditToggle}
+              />
             )}
           </div>
 

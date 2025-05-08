@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./Login.module.css";
 
@@ -10,21 +10,41 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const params = new URLSearchParams();
       params.append("username", username);
       params.append("password", password);
-  
+
       const response = await axios.post("/api/login", params, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-  
+
       const token = response.headers["authorization"];
       if (token && token.startsWith("Bearer ")) {
-        localStorage.setItem("token", token);
+        const pureToken = token.split(" ")[1];
+        localStorage.setItem("token", pureToken);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${pureToken}`;
+
+        // ✅ 여기서 인터셉터도 등록
+        axios.interceptors.response.use(
+          (response) => response,
+          (error) => {
+            if (
+              error.response?.status === 401 ||
+              error.response?.status === 403
+            ) {
+              console.warn("⛔ 토큰 만료, 로그아웃 처리");
+              localStorage.removeItem("token");
+              delete axios.defaults.headers.common["Authorization"];
+              window.location.href = "/login";
+            }
+            return Promise.reject(error);
+          }
+        );
+
         alert("로그인 성공!");
         navigate("/");
       } else {
