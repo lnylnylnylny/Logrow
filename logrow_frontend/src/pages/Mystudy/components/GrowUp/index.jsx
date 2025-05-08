@@ -2,8 +2,10 @@ import { stepCards } from "../../../../data/treeCardData";
 import styles from "./GrowUp.module.css";
 import Clover from "../../../../assets/clover.svg";
 import { studyData } from "../../../../data/addStudyData";
+import { useNavigate } from "react-router-dom";
 
 export default function GrowUp() {
+  const navigate = useNavigate();
   const selectedStudy = studyData.find((s) => s.id === 1);
 
   const getCurrentStep = (mainTask) =>
@@ -51,16 +53,34 @@ export default function GrowUp() {
         <div className={styles.rightPanel}>
           <div className={styles.treeTitle}>나무 성장 페이지</div>
           <div className={styles.treePreview}>
-            {currentStep > 0 ? (
-              <img
-                src={stepCards[currentStep - 1].big}
-                alt={`단계 ${currentStep} big card`}
-                className={styles.bigCardImage}
-              />
-            ) : (
-              <div className={styles.placeholder}>나무를 키워보세요!</div>
-            )}
-          </div>
+  {currentStep > 0 ? (
+    <div className={styles.cardWrapper}>
+      <img
+        src={stepCards[3].big}
+        alt="4단계 기본"
+        className={`${styles.bigCardImage} ${styles.default}`}
+      />
+      {currentStep === 4 && (
+        <>
+          <img
+            src={stepCards[3].bigComplete}
+            alt="완성된 카드"
+            className={styles.hoverImage}
+          />
+          <button
+            className={styles.reviewButton}
+            onClick={() => navigate("/mystudy/review")}
+          >
+            평가하러 가기
+          </button>
+        </>
+      )}
+    </div>
+  ) : (
+    <div className={styles.placeholder}>나무를 키워보세요!</div>
+  )}
+</div>
+
         </div>
       </div>
     </div>

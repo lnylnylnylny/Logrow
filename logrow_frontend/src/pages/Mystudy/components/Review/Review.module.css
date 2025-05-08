@@ -50,6 +50,7 @@
   box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   width: 350px;
+  transition: background-color 0.2s;
 }
 
 .titleBtn:hover {
@@ -122,6 +123,12 @@
   cursor: pointer;
   margin-left: 2px;
 }
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 
 /* 평가 항목 화면 */
 .evaluation {
@@ -208,4 +215,10 @@
 
 .saveBtn:hover {
   background-color: #6ae35a;
+}
+
+.saveBtn:disabled {
+  background-color: #dcdcdc;
+  cursor: not-allowed;
+  color: #888;
 }

@@ -6,7 +6,7 @@ export default function NavigationTabs() {
     { label: 'A. My Study Room', key: 'room', path: '' },
     { label: 'B. Checklist', key: 'checklist', path: 'checklist' },
     { label: 'C. Grow Up!', key: 'growup', path: 'growup' },
-    { label: 'D. Review', key: 'review', path: 'review' },
+    { label: 'D. Review', key: 'review', path: 'review', disabled: true },
   ];
 
   const location = useLocation();
@@ -19,8 +19,10 @@ export default function NavigationTabs() {
       {tabs.map((tab) => (
         <div
           key={tab.key}
-          className={`${styles.tab} ${currentPath === tab.path ? styles.active : ''}`}
-          onClick={() => navigate(`/mystudy/${tab.path}`)} // ''이면 /mystudy로 이동
+          className={`${styles.tab} ${currentPath === tab.path ? styles.active : ''} ${tab.disabled ? styles.disabled : ''}`}
+          onClick={() => {
+            if (!tab.disabled) navigate(`/mystudy/${tab.path}`);
+          }} // ''이면 /mystudy로 이동
         >
           {tab.label}
         </div>

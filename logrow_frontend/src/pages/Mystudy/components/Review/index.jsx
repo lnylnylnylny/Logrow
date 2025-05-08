@@ -1,20 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Review.module.css";
 import Bookmark from "../../../../assets/Bookmark.svg";
 import { AiOutlineTeam } from "react-icons/ai";
 import { studyData } from "../../../../data/addStudyData";
 
 export default function Review() {
-  const [showMembers, setShowMembers] = useState(false);
-  const [selectedMember, setSelectedMember] = useState(null);
-  const [answers, setAnswers] = useState({});
-  const study = studyData.find((s) => s.id === 1);
-
-  const members = [
-    { name: study.owner.name, role: "스터디장" },
-    ...study.participants,
-  ];
-
   const questions = [
     {
       text: "1. 팀원의 참여도는 어떤가요?",
@@ -49,6 +40,20 @@ export default function Review() {
     },
   ];
 
+  const [showMembers, setShowMembers] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [answers, setAnswers] = useState({});
+  const [completedMembers, setCompletedMembers] = useState([]);
+  const isAllAnswered = questions.length === Object.keys(answers).length;
+  const navigate = useNavigate();
+
+  const study = studyData.find((s) => s.id === 1);
+
+  const members = [
+    { name: study.owner.name, role: "스터디장" },
+    ...study.participants,
+  ];
+
   const handleSelect = (qIndex, value) => {
     setAnswers((prev) => ({
       ...prev,
@@ -58,11 +63,21 @@ export default function Review() {
 
   const handleSave = () => {
     console.log(`${selectedMember}의 평가 결과`, answers);
+    setCompletedMembers((prev) => [...prev, selectedMember]); // 평가 완료한 팀원 추가
     setSelectedMember(null); // 평가 완료 후 팀원 선택 화면으로 돌아감
     setShowMembers(true); // 팀원 리스트 다시 보이기
     setAnswers({}); // 응답 초기화
   };
 
+  const isAllMembersReviewed = completedMembers.length === members.length;
+
+  useEffect(() => {
+    if (isAllMembersReviewed) {
+      alert("모든 팀원 평가가 완료되었습니다!");
+      navigate("/"); // 홈 경로로 이동
+    }
+  }, [isAllMembersReviewed, navigate]);
+  
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -73,35 +88,40 @@ export default function Review() {
       <div className={styles.content}>
         {!selectedMember ? (
           <>
-            <div className={styles.titleBtn}>
+            <div
+              className={styles.titleBtn}
+              onClick={() => setShowMembers(!showMembers)}
+            >
               <AiOutlineTeam />
-              <button
-                className={styles.button}
-                onClick={() => setShowMembers(!showMembers)}
-              >
-                팀원 선택하기
-              </button>
+              <span className={styles.button}>팀원 선택하기</span>
             </div>
 
             {showMembers ? (
               <div className={styles.memberBox}>
-                {members.map((member, index) => (
-                  <div
-                    key={index}
-                    className={styles.memberItem}
-                    onClick={() => {
-                      setSelectedMember(member.name);
-                      setShowMembers(false);
-                    }}
-                  >
+                {members.map((member, index) => {
+                  const isCompleted = completedMembers.includes(member.name);
+                  return (
                     <div
-                      className={`${styles.radioCircle} ${
-                        selectedMember === member.name ? styles.selected : ""
+                      key={index}
+                      className={`${styles.memberItem} ${
+                        isCompleted ? styles.disabled : ""
                       }`}
-                    />
-                    <span>{member.name}</span>
-                  </div>
-                ))}
+                      onClick={() => {
+                        if (!isCompleted) {
+                          setSelectedMember(member.name);
+                          setShowMembers(false);
+                        }
+                      }}
+                    >
+                      <div
+                        className={`${styles.radioCircle} ${
+                          selectedMember === member.name ? styles.selected : ""
+                        }`}
+                      />
+                      <span>{member.name}</span>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <p>
@@ -114,7 +134,9 @@ export default function Review() {
           </>
         ) : (
           <div className={styles.evaluation}>
-            <p className={styles.evaluationName}>{selectedMember} 팀원 평가</p>
+            <p className={styles.evaluationName}>
+              "{selectedMember}" 팀원 평가
+            </p>
             {questions.map((q, i) => (
               <div key={i} className={styles.questionBox}>
                 <p className={styles.question}>
@@ -136,7 +158,11 @@ export default function Review() {
                 </div>
               </div>
             ))}
-            <button className={styles.saveBtn} onClick={handleSave}>
+            <button
+              className={styles.saveBtn}
+              onClick={handleSave}
+              disabled={!isAllAnswered}
+            >
               저장하기
             </button>
           </div>
