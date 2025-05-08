@@ -19,20 +19,18 @@ export default function Mypage() {
     "안녕하세요. 소개글을 작성하시려면 위에 연필 아이콘을 눌러주세요."
   );
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user, setUser] = useState(userData[0]); // 첫 번째 유저
 
   const handleEditToggle = () => setIsEditing(true);
   const handleSave = () => setIsEditing(false);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // 사용자 더미 데이터
-  const [user, setUser] = useState(userData);
 
   return (
     <div className={styles.page}>
       <Sidebar />
 
       <div className={styles.content}>
+        {/* 프로필 카드 */}
         <section className={styles.card}>
           <h2 className={styles.cardTitle}>내 프로필</h2>
 
@@ -46,24 +44,19 @@ export default function Mypage() {
 
           <div className={styles.userInfo}>
             <h3 className={styles.name}>
-              {user.name}{" "}
+              {user.name}
               <img
                 src={batteryImages[user.battery]}
                 alt={`배터리 ${user.battery}`}
                 className={styles.batteryIcon}
               />
             </h3>
-            <p className={styles.email}>
-              {user.email || "이메일을 입력해주세요"}
-            </p>
-            <p className={styles.phone}>
-              {user.phone || "전화번호를 입력해주세요"}
-            </p>
+            <p className={styles.email}>{user.email || "이메일을 입력해주세요"}</p>
+            <p className={styles.phone}>{user.phone || "전화번호를 입력해주세요"}</p>
           </div>
 
           <div className={styles.details}>
             <div className={styles.detailItem}>
-              {/* 전공 */}
               <FaGraduationCap className={styles.icon} />
               <strong className={styles.value}>{user.major}</strong>
             </div>
@@ -74,12 +67,12 @@ export default function Mypage() {
                 <div key={i} className={styles.detailItem}>
                   <IoLinkOutline className={styles.icon} />
                   <a
-                    href={link}
+                    href={link.url}
                     target="_blank"
                     rel="noreferrer"
                     className={styles.value}
                   >
-                    {link}
+                    {link.label || link.url}
                   </a>
                 </div>
               ))
@@ -110,6 +103,7 @@ export default function Mypage() {
           </div>
         </section>
 
+        {/* 소개글 */}
         <section className={styles.intro}>
           <div className={styles.introHeader}>
             <span className={styles.introTitle}>소개글 작성</span>
@@ -138,10 +132,12 @@ export default function Mypage() {
         </section>
       </div>
 
+      {/* 모달 */}
       {isModalOpen && (
         <div className={styles.modalBackdrop}>
           <div className={styles.modal}>
             <h3>개인정보 수정</h3>
+
             <label>
               이름
               <input
@@ -150,6 +146,7 @@ export default function Mypage() {
                 onChange={(e) => setUser({ ...user, name: e.target.value })}
               />
             </label>
+
             <label>
               이메일
               <input
@@ -158,6 +155,7 @@ export default function Mypage() {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
               />
             </label>
+
             <label>
               전화번호
               <input
@@ -166,6 +164,7 @@ export default function Mypage() {
                 onChange={(e) => setUser({ ...user, phone: e.target.value })}
               />
             </label>
+
             <label>
               전공
               <input
@@ -174,6 +173,7 @@ export default function Mypage() {
                 onChange={(e) => setUser({ ...user, major: e.target.value })}
               />
             </label>
+
             <label>
               링크
               <div className={styles.linkList}>
@@ -181,10 +181,13 @@ export default function Mypage() {
                   <div key={index} className={styles.linkItem}>
                     <input
                       type="text"
-                      value={link}
+                      value={link.url}
                       onChange={(e) => {
                         const updated = [...user.links];
-                        updated[index] = e.target.value;
+                        updated[index] = {
+                          ...updated[index],
+                          url: e.target.value,
+                        };
                         setUser({ ...user, links: updated });
                       }}
                     />
@@ -192,9 +195,7 @@ export default function Mypage() {
                       type="button"
                       className={styles.removeLinkButton}
                       onClick={() => {
-                        const updated = user.links.filter(
-                          (_, i) => i !== index
-                        );
+                        const updated = user.links.filter((_, i) => i !== index);
                         setUser({ ...user, links: updated });
                       }}
                     >
@@ -206,7 +207,10 @@ export default function Mypage() {
                   type="button"
                   className={styles.addLinkButton}
                   onClick={() =>
-                    setUser({ ...user, links: [...user.links, ""] })
+                    setUser({
+                      ...user,
+                      links: [...user.links, { label: "New", url: "" }],
+                    })
                   }
                 >
                   + 링크 추가
