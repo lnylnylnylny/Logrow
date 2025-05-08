@@ -2,8 +2,8 @@ import styles from "./StudyCard.module.css";
 import { typeColorMap } from "../../../../data/typeColorData";
 
 export default function StudyCard({ study }) {
-  const typeStyle = typeColorMap[study.studyType];
-  const modeStyle = typeColorMap[study.mode];
+  const typeStyle = typeColorMap[study.studyType] || {};
+  const modeStyle = typeColorMap[study.mode] || {};
 
   return (
     <div className={styles.card}>

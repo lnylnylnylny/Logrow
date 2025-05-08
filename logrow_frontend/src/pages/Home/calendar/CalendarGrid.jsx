@@ -1,5 +1,5 @@
 import "./CalendarPanel/CalendarPanel.css";
-import { studyData } from "../../../data/addStudyData";
+// import { studyData } from "../../../data/addStudyData";
 import { typeColorMap } from "../../../data/typeColorData";
 import CalendarBlock from "./CalendarBlock";
 import { getFirstCalendarDate, getCellDate } from "./CalendarUtils";

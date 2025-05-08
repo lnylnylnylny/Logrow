@@ -4,8 +4,10 @@ import logo from "../../assets/logo.svg";
 import { useEffect } from "react";
 import { handleDateValidation } from "./addStudyUtils";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AddStudy() {
+  const navigate = useNavigate();
   const days = [
     { kor: "월요일", eng: "Mon." },
     { kor: "화요일", eng: "Tue." },
@@ -85,6 +87,7 @@ export default function AddStudy() {
       });
       alert("스터디가 성공적으로 등록되었습니다!");
       form.reset();
+      navigate("/");
     } catch (err) {
       console.error("스터디 등록 실패:", err);
       alert("스터디 등록에 실패했습니다.");

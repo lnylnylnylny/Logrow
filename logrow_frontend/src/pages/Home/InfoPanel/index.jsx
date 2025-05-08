@@ -2,6 +2,7 @@ import styles from "./InfoPanel.module.css";
 import batteryImages from "../../../data/batteryData";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const InfoSection = ({ title, children }) => (
   <div className={styles.section}>
@@ -11,6 +12,7 @@ const InfoSection = ({ title, children }) => (
 );
 
 export default function InfoPanel({ studyId }) {
+  const navigate = useNavigate();
   const [study, setStudy] = useState(null);
   console.log("InfoPanel studyId:", studyId);
 
@@ -33,6 +35,29 @@ export default function InfoPanel({ studyId }) {
         .catch((err) => console.error("스터디 정보 가져오기 실패", err));
     }
   }, [studyId]);
+  
+  const handleApply = async () => {
+    const rawToken = localStorage.getItem("token");
+    if (!rawToken) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+  
+    const token = rawToken.startsWith("Bearer ") ? rawToken : `Bearer ${rawToken}`;
+  
+    try {
+      await axios.post(`/api/study/${studyId}/apply`, {}, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      alert("스터디 신청이 완료되었습니다!");
+      navigate("/mystudy");
+    } catch (err) {
+      console.error("스터디 신청 실패:", err);
+      alert("신청 중 오류가 발생했습니다.");
+    }
+  };
   
 
   if (!study) {
@@ -68,7 +93,7 @@ export default function InfoPanel({ studyId }) {
       <InfoSection title="💻 진행 방식">{study.mode}</InfoSection>
       <InfoSection title="📝 설명">{study.studyDescription}</InfoSection>
 
-      <div className={styles.button}>신청하러 가기</div>
+      <div className={styles.button} onClick={handleApply}>신청하러 가기</div>
     </div>
   );
 }
