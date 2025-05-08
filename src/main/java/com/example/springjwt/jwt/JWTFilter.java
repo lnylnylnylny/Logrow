@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class JWTFilter extends OncePerRequestFilter {
 
+
     private final JWTUtil jwtUtil;
 
     public JWTFilter(JWTUtil jwtUtil) {
@@ -67,5 +68,8 @@ public class JWTFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authToken);
 
         filterChain.doFilter(request, response);
+
+
+
     }
 }

@@ -59,6 +59,10 @@ public class SecurityConfig {
                 .requestMatchers("/admin").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT, "/mypage/update").authenticated()
                 .requestMatchers(HttpMethod.GET, "/mypage").authenticated()
+                .requestMatchers(HttpMethod.POST, "/study").authenticated()
+                .requestMatchers(HttpMethod.GET, "/study").authenticated()
+                .requestMatchers(HttpMethod.GET, "/study/**").authenticated()
+
                 .anyRequest().authenticated()
         );
 

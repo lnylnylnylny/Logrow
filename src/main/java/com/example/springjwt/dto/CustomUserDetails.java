@@ -2,6 +2,7 @@ package com.example.springjwt.dto;
 
 import com.example.springjwt.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -22,15 +23,7 @@ public class CustomUserDetails  implements UserDetails {
 
         Collection<GrantedAuthority> collection = new ArrayList<>();
 
-        collection.add(new GrantedAuthority() {
-
-            @Override
-            public String getAuthority() {
-
-                return userEntity.getRole();
-            }
-        });
-
+        collection.add(new SimpleGrantedAuthority(userEntity.getRole()));
         return collection;
     }
 
