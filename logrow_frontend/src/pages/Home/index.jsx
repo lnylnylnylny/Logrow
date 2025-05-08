@@ -14,7 +14,7 @@ export default function Home() {
       </div>
 
       <div className={styles.infoPanel}>
-        <InfoPanel study={selectedStudy} />
+        <InfoPanel studyId={selectedStudy} />
       </div>
 
       <div className={styles.calendarPanel}>

@@ -1,5 +1,7 @@
 import styles from "./InfoPanel.module.css";
 import batteryImages from "../../../data/batteryData";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const InfoSection = ({ title, children }) => (
   <div className={styles.section}>
@@ -8,7 +10,31 @@ const InfoSection = ({ title, children }) => (
   </div>
 );
 
-export default function InfoPanel({ study }) {
+export default function InfoPanel({ studyId }) {
+  const [study, setStudy] = useState(null);
+  console.log("InfoPanel studyId:", studyId);
+
+  useEffect(() => {
+    if (studyId) {
+      const rawToken = localStorage.getItem("token");
+      if (!rawToken) return;
+  
+      const token = rawToken.startsWith("Bearer ")
+        ? rawToken
+        : `Bearer ${rawToken}`;
+  
+      axios
+        .get(`/api/study/${studyId}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => setStudy(res.data))
+        .catch((err) => console.error("스터디 정보 가져오기 실패", err));
+    }
+  }, [studyId]);
+  
+
   if (!study) {
     return (
       <div className={styles.placeholder}>
@@ -20,10 +46,10 @@ export default function InfoPanel({ study }) {
   return (
     <div className={styles.infoCard}>
       <InfoSection title="👤 스터디장">
-        {study.owner?.name}
+        {study.ownerName}
         <img
-          src={batteryImages[Number(study.owner?.battery)]}
-          alt={`배터리 ${study.owner?.battery}`}
+          src={batteryImages[Number(study.ownerBattery)]}
+          alt={`배터리 ${study.ownerBattery}`}
           className={styles.batteryIcon}
         />
       </InfoSection>
@@ -33,7 +59,9 @@ export default function InfoPanel({ study }) {
       <InfoSection title="🗓️ 기간">
         {study.startDate} ~ {study.endDate}
       </InfoSection>
-      <InfoSection title="📅 요일">{study.day.join(", ")}</InfoSection>
+      <InfoSection title="📅 요일">
+        {study.days?.join(", ") || "정보 없음"}
+      </InfoSection>
       <InfoSection title="👥 모집 인원">
         {study.studyParticipants}명
       </InfoSection>

@@ -35,18 +35,21 @@ export default function Login() {
           axios.interceptors.response.use(
             (res) => res,
             (error) => {
-              if (
-                error.response?.status === 401 ||
-                error.response?.status === 403
-              ) {
-                console.warn("⛔ 토큰 만료, 로그아웃 처리");
+              const status = error.response?.status;
+          
+              if (status === 401) {
+                console.warn("⛔ 인증 실패 (401) - 로그아웃 처리");
                 localStorage.removeItem("token");
                 delete axios.defaults.headers.common["Authorization"];
                 window.location.href = "/login";
+              } else if (status === 403) {
+                console.warn("⚠️ 권한 없음 (403) - 하지만 로그아웃은 안 함");
               }
+          
               return Promise.reject(error);
             }
           );
+          
         }
 
         alert("로그인 성공!");

@@ -3,9 +3,36 @@ import { studyData } from "../../../data/addStudyData";
 import { typeColorMap } from "../../../data/typeColorData";
 import CalendarBlock from "./CalendarBlock";
 import { getFirstCalendarDate, getCellDate } from "./CalendarUtils";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
+  const [studyList, setStudyList] = useState([]);
+
+useEffect(() => {
+  const rawToken = localStorage.getItem("token");
+  if (!rawToken) return;
+
+  const token = rawToken.startsWith("Bearer ")
+    ? rawToken
+    : `Bearer ${rawToken}`;
+
+  axios
+    .get("/api/study", {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => {
+      console.log("✅ 스터디 조회 성공:", res.data);
+      setStudyList(res.data);
+    })
+    .catch((err) => {
+      console.error("❌ 스터디 조회 실패:", err);
+    });
+}, []);
+
+  
   const year = selectedDate.getFullYear();
   const month = selectedDate.getMonth();
 
@@ -29,7 +56,7 @@ export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
 
-    return studyData
+    return studyList
       .map((study) => {
         const start = normalizeDate(new Date(study.startDate));
         const end = normalizeDate(new Date(study.endDate));
@@ -93,8 +120,8 @@ export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
                   key={`${bar.id}-${i}`}
                   className="studyBar"
                   onClick={() => {
-                    const fullStudy = studyData.find((s) => s.id === bar.id);
-                    setSelectedStudy(fullStudy);
+
+                    setSelectedStudy(bar.id);
                   }}
                   style={{
                     backgroundColor: bar.color.bg,
