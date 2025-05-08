@@ -10,4 +10,7 @@ public class ProfileUpdateDTO {
     private String email;
     private String phone;
     private String introduction;
+    private Integer battery;
+
 }
+

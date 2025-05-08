@@ -11,12 +11,14 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE UserEntity u SET u.profileImage = :profileImage, u.email = :email, u.phone = :phone, u.introduction = :introduction WHERE u.username = :username")
+    @Query("UPDATE UserEntity u SET u.profileImage = :profileImage, u.email = :email, u.phone = :phone, u.introduction = :introduction, u.battery = :battery WHERE u.username = :username")
     void updateProfile(@Param("profileImage") String profileImage,
                        @Param("email") String email,
                        @Param("phone") String phone,
                        @Param("introduction") String introduction,
+                       @Param("battery") Integer battery,
                        @Param("username") String username);
+
 
     Boolean existsByUsername(String username);
 

@@ -17,6 +17,7 @@ public class MyPageService {
                 updateDTO.getEmail(),
                 updateDTO.getPhone(),
                 updateDTO.getIntroduction(),
+                updateDTO.getBattery(),
                 username
         );
     }

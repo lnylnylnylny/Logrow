@@ -42,6 +42,8 @@ public class JoinService {
         data.setBirthDate(birthDate);
         data.setMajor(major);
         data.setInterests(interests);
+        data.setBattery(joinDTO.getBattery() != null ? joinDTO.getBattery() : 1); // 기본값 1
+
 
         // 기존 필드 설정
         data.setUsername(username);
