@@ -20,26 +20,28 @@ export default function Mypage() {
   const navigate = useNavigate();
 
   const handleEditToggle = () => setIsEditing(true);
+
   const handleSave = () => {
     setUser({ ...user, introduction: introText });
     setIsEditing(false);
+    handleUpdateProfile();
   };
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const token = localStorage.getItem("token");
-
-        const response = await axios.get("/api/mypage", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
+        const response = await axios.get("/api/mypage"); // 헤더 생략 (전역에 설정돼 있음)
         setUser(response.data);
         setIntroText(response.data.introduction || "");
       } catch (err) {
         console.error("프로필 조회 실패:", err);
+
+        if (err.response?.status === 401 || err.response?.status === 403) {
+          localStorage.removeItem("token");
+          delete axios.defaults.headers.common["Authorization"];
+          alert("세션이 만료되어 로그아웃되었습니다.");
+          navigate("/login");
+        }
       }
     };
 
@@ -56,6 +58,7 @@ export default function Mypage() {
           profileImage: user.profileImage,
           email: user.email,
           phone: user.phone,
+          battery: user.battery,
           introduction: introText,
         },
         {
@@ -66,7 +69,7 @@ export default function Mypage() {
         }
       );
 
-      alert("개인정보가 수정되었습니다!");
+      alert("저장되었습니다!");
       setIsModalOpen(false);
     } catch (err) {
       console.error("프로필 수정 실패:", err);

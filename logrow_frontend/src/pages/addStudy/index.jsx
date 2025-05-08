@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import logo from "../../assets/logo.svg";
 import { useEffect } from "react";
 import { handleDateValidation } from "./addStudyUtils";
+import axios from "axios";
 
 export default function AddStudy() {
   const days = [
@@ -23,6 +24,73 @@ export default function AddStudy() {
     }
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const selectedDays = [...form.day]
+      .filter((el) => el.checked)
+      .map((el) => el.value);
+
+    if (selectedDays.length === 0) {
+      alert("요일을 하나 이상 선택해야 합니다.");
+      return;
+    }
+
+    const mainTasks = [1, 2, 3, 4].map((step) => ({
+      step,
+      title: form[`mainTask${step}`].value,
+      done: false,
+      subTasks: [],
+    }));
+
+    const rawToken = localStorage.getItem("token");
+    if (!rawToken) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
+    const token = rawToken.startsWith("Bearer ")
+      ? rawToken.split(" ")[1]
+      : rawToken;
+
+    let ownerUsername = "anonymous";
+    try {
+      const parsedToken = JSON.parse(atob(token.split(".")[1]));
+      ownerUsername = parsedToken.username;
+    } catch (err) {
+      console.error("JWT 디코딩 실패", err);
+      alert("토큰이 유효하지 않습니다. 다시 로그인해주세요.");
+      return;
+    }
+
+    const payload = {
+      studyName: form.studyName.value,
+      studyType: form.studyType.value,
+      studyDescription: form.studyDescription.value,
+      startDate: form.startDate.value,
+      endDate: form.endDate.value,
+      studyParticipants: Number(form.studyParticipants.value),
+      mode: form.mode.value,
+      ownerUsername,
+      days: selectedDays,
+      mainTasks,
+    };
+
+    try {
+      await axios.post("/api/study", payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      alert("스터디가 성공적으로 등록되었습니다!");
+      form.reset();
+    } catch (err) {
+      console.error("스터디 등록 실패:", err);
+      alert("스터디 등록에 실패했습니다.");
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Sidebar />
@@ -31,7 +99,7 @@ export default function AddStudy() {
       <div className={styles.formContainer}>
         <div className={styles.header}>스터디 개설하기</div>
 
-        <form className={styles.form} >
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.firstLabel}>
             <div className={styles.inputContainer}>
               <span className={styles.label}>스터디명</span>
@@ -76,8 +144,8 @@ export default function AddStudy() {
                     type="checkbox"
                     name="day"
                     value={day.kor.slice(0, 1)}
-                    required={idx === 0} // 최소 1개는 선택해야 하도록 첫 항목에만 required 추가 (form 유효성 체크 위한 트릭)
                   />
+
                   <div className={styles.dayButtonContent}>
                     <span className={styles.korean}>{day.kor}</span>
                     <span className={styles.english}>{day.eng}</span>

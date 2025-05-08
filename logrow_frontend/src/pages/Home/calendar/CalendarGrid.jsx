@@ -4,6 +4,7 @@ import { typeColorMap } from "../../../data/typeColorData";
 import CalendarBlock from "./CalendarBlock";
 import { getFirstCalendarDate, getCellDate } from "./CalendarUtils";
 
+
 export default function CalendarGrid({ selectedDate, setSelectedStudy }) {
   const year = selectedDate.getFullYear();
   const month = selectedDate.getMonth();

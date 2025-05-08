@@ -22,28 +22,32 @@ export default function Login() {
         },
       });
 
-      const token = response.headers["authorization"];
+      const token =
+        response.headers["authorization"] || response.headers["Authorization"];
+
       if (token && token.startsWith("Bearer ")) {
         const pureToken = token.split(" ")[1];
         localStorage.setItem("token", pureToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${pureToken}`;
 
-        // ✅ 여기서 인터셉터도 등록
-        axios.interceptors.response.use(
-          (response) => response,
-          (error) => {
-            if (
-              error.response?.status === 401 ||
-              error.response?.status === 403
-            ) {
-              console.warn("⛔ 토큰 만료, 로그아웃 처리");
-              localStorage.removeItem("token");
-              delete axios.defaults.headers.common["Authorization"];
-              window.location.href = "/login";
+        // 인터셉터 중복 등록 방지
+        if (!axios.interceptors.response.handlers.length) {
+          axios.interceptors.response.use(
+            (res) => res,
+            (error) => {
+              if (
+                error.response?.status === 401 ||
+                error.response?.status === 403
+              ) {
+                console.warn("⛔ 토큰 만료, 로그아웃 처리");
+                localStorage.removeItem("token");
+                delete axios.defaults.headers.common["Authorization"];
+                window.location.href = "/login";
+              }
+              return Promise.reject(error);
             }
-            return Promise.reject(error);
-          }
-        );
+          );
+        }
 
         alert("로그인 성공!");
         navigate("/");
