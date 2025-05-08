@@ -25,3 +25,187 @@
   font-weight: bold;
   color: #202020;
 }
+
+/* 내용부분 */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-bottom: 50px;
+  gap: 20px;
+  text-align: center;
+}
+
+.titleBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #7eff66;
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: #202020;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  width: 350px;
+}
+
+.titleBtn:hover {
+  background-color: #6ae35a;
+}
+
+.button {
+  all: unset; /* 버튼 초기화 */
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.content p {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #202020;
+}
+
+/* 팀원 선택하기 */
+.memberBox {
+  border: 1.5px solid #7eff66;
+  border-radius: 12px;
+  padding: 16px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.memberItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 15px;
+  color: #202020;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.radioCircle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #7eff66;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+  background-color: #7eff66;
+  box-shadow: inset 0 0 0 4px white;
+}
+
+.radioCirclePlus {
+  width: 20px;
+  height: 20px;
+  background-color: #7eff66;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+/* 평가 항목 화면 */
+.evaluation {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  gap: 20px;
+}
+
+.evaluationName {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  color: #202020;
+}
+
+.questionBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.question {
+  font-size: 16px;
+  font-weight: bold;
+  color: #202020;
+  text-align: center;
+}
+
+.hint {
+  font-size: 13px;
+  color: #999;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.optionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.optionBtn {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #202020;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 80px;
+}
+
+.optionBtn:hover {
+  border-color: #7eff66;
+  background-color: #f6fff4;
+}
+
+.optionBtn.active {
+  background-color: #7eff66;
+  border-color: #7eff66;
+  color: #202020;
+}
+
+.saveBtn {
+  align-self: center;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #7eff66;
+  color: #202020;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.saveBtn:hover {
+  background-color: #6ae35a;
+}
