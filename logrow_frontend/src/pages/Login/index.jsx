@@ -10,19 +10,23 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post("/api/login", {
-        username,
-        password,
+      const params = new URLSearchParams();
+      params.append("username", username);
+      params.append("password", password);
+  
+      const response = await axios.post("/api/login", params, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       });
-
-      // JWT 토큰은 응답 헤더에 있음
+  
       const token = response.headers["authorization"];
       if (token && token.startsWith("Bearer ")) {
-        localStorage.setItem("token", token); // 토큰 저장
+        localStorage.setItem("token", token);
         alert("로그인 성공!");
-        navigate("/"); // 홈으로 이동
+        navigate("/");
       } else {
         alert("토큰을 받지 못했습니다.");
       }
