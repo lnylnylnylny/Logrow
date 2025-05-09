@@ -37,12 +37,23 @@ public class JWTUtil {
 
     public String createJwt(String username, String role, Long expiredMs) {
 
+        Date now = new Date(System.currentTimeMillis());
+        Date expiry = new Date(System.currentTimeMillis() + expiredMs);
+
+        // 로그 추가: 토큰 발급 및 만료 시간 확인
+        System.out.println("🔐 [JWT 생성]");
+        System.out.println("username: " + username);
+        System.out.println("role: " + role);
+        System.out.println("발급 시간 (issuedAt): " + now);
+        System.out.println("만료 시간 (expiration): " + expiry);
+
         return Jwts.builder()
                 .claim("username", username)
                 .claim("role", role)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiredMs))
+                .issuedAt(now)
+                .expiration(expiry)
                 .signWith(secretKey)
                 .compact();
     }
+
 }
