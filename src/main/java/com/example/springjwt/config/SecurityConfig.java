@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
@@ -45,35 +44,39 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // CORS 허용
-        http.cors((cors) -> cors.configurationSource(corsConfigurationSource()));
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
-        // CSRF, 기본 로그인/인증 disable
-        http.csrf((auth) -> auth.disable());
-        http.formLogin((auth) -> auth.disable());
-        http.httpBasic((auth) -> auth.disable());
+        http.csrf(csrf -> csrf.disable());
+        http.formLogin(form -> form.disable());
+        http.httpBasic(basic -> basic.disable());
 
-        // 권한 설정
-        http.authorizeHttpRequests((auth) -> auth
+        http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/", "/join").permitAll()
                 .requestMatchers("/admin").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/mypage/update").authenticated()
-                .requestMatchers(HttpMethod.GET, "/mypage").authenticated()
+
+                .requestMatchers(HttpMethod.POST, "/api/study").authenticated()
+                .requestMatchers("/api/study/**").authenticated()
+
+                .requestMatchers(HttpMethod.POST, "/study/*/checklist").authenticated()
                 .requestMatchers(HttpMethod.POST, "/study").authenticated()
                 .requestMatchers(HttpMethod.GET, "/study").authenticated()
                 .requestMatchers(HttpMethod.GET, "/study/**").authenticated()
+                .requestMatchers(HttpMethod.POST, "/study/**").authenticated()
+
+                .requestMatchers(HttpMethod.PUT, "/mypage/update").authenticated()
+                .requestMatchers(HttpMethod.GET, "/mypage").authenticated()
+
+                .requestMatchers(HttpMethod.GET, "/api/study/*/feedbacks").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/study/*/feedbacks").authenticated()
+
 
                 .anyRequest().authenticated()
         );
 
-        // JWT 필터 등록
-        http.addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+        http.addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
         http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
-        // 세션 설정
-        http.sessionManagement((session) -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        );
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
@@ -81,7 +84,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // Vite 기본 포트
+        config.setAllowedOrigins(List.of("http://localhost:5173"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

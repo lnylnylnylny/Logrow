@@ -18,7 +18,13 @@ public class StudyEntity {
     private Long id;
 
     private String studyName;
-    private String studyType;
+
+    @Enumerated(EnumType.STRING)
+    private StudyType studyType;
+
+    public enum StudyType {
+        프로젝트, 스터디, 챌린지, 토론, 실습, 멘토링, 모의면접
+    }
     private String studyDescription;
 
     private LocalDate startDate;
@@ -43,4 +49,11 @@ public class StudyEntity {
     public enum DayOfWeekKorean {
         월, 화, 수, 목, 금, 토, 일
     }
+
+    @OneToMany(mappedBy = "study", fetch = FetchType.LAZY)
+    private List<Participant> participants;
+
+    @OneToMany(mappedBy = "study", fetch = FetchType.LAZY)
+    private List<MainTask> mainTasks;
+
 }

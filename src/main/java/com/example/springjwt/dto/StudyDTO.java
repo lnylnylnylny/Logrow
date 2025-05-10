@@ -1,6 +1,8 @@
 package com.example.springjwt.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -27,6 +29,8 @@ public class StudyDTO {
 
     @Getter
     @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class MainTaskDTO {
         private int step;
         private String title;
@@ -36,6 +40,8 @@ public class StudyDTO {
 
     @Getter
     @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class SubTaskDTO {
         private String text;
         private boolean done;

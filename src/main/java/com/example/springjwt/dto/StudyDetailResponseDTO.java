@@ -19,6 +19,8 @@ public class StudyDetailResponseDTO {
     private String mode;
     private int studyParticipants;
     private List<DayOfWeekKorean> days;
+    private List<ParticipantDTO> participants;
+    private List<MainTaskDTO> mainTasks;
 
     // 스터디장 정보
     private String ownerName;
@@ -27,7 +29,7 @@ public class StudyDetailResponseDTO {
     public StudyDetailResponseDTO(StudyEntity entity) {
         this.id = entity.getId();
         this.studyName = entity.getStudyName();
-        this.studyType = entity.getStudyType();
+        this.studyType = entity.getStudyType().toString();
         this.studyDescription = entity.getStudyDescription();
         this.startDate = entity.getStartDate();
         this.endDate = entity.getEndDate();
@@ -37,5 +39,13 @@ public class StudyDetailResponseDTO {
 
         this.ownerName = entity.getOwner().getName();
         this.ownerBattery = entity.getOwner().getBattery();
+
+        this.mainTasks = entity.getMainTasks().stream()
+                .map(MainTaskDTO::new)
+                .toList();
+
+        this.participants = entity.getParticipants().stream()
+                .map(ParticipantDTO::new)
+                .toList();
     }
 }

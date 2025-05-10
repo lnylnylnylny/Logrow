@@ -17,7 +17,7 @@ public class StudyResponseDTO {
     public StudyResponseDTO(com.example.springjwt.entity.StudyEntity entity) {
         this.id = entity.getId();
         this.studyName = entity.getStudyName();
-        this.studyType = entity.getStudyType();
+        this.studyType = entity.getStudyType().toString();
         this.startDate = entity.getStartDate();
         this.endDate = entity.getEndDate();
     }
