@@ -13,20 +13,28 @@ export default function NavigationTabs() {
   const navigate = useNavigate();
 
   const currentPath = location.pathname.split("/")[2] || ""; // e.g. mystudy/checklist → checklist
+  const selectedStudyId = localStorage.getItem("selectedStudyId");
 
   return (
     <div className={styles.tabsContainer}>
-      {tabs.map((tab) => (
-        <div
-          key={tab.key}
-          className={`${styles.tab} ${currentPath === tab.path ? styles.active : ''} ${tab.disabled ? styles.disabled : ''}`}
-          onClick={() => {
-            if (!tab.disabled) navigate(`/mystudy/${tab.path}`);
-          }} // ''이면 /mystudy로 이동
-        >
-          {tab.label}
-        </div>
-      ))}
+      {tabs.map((tab) => {
+        const isStudyTab = ["checklist", "growup", "review"].includes(tab.path);
+        const fullPath = isStudyTab && selectedStudyId
+          ? `/mystudy/${tab.path}/${selectedStudyId}`
+          : `/mystudy/${tab.path}`;
+
+        return (
+          <div
+            key={tab.key}
+            className={`${styles.tab} ${currentPath === tab.path ? styles.active : ''} ${tab.disabled ? styles.disabled : ''}`}
+            onClick={() => {
+              if (!tab.disabled) navigate(fullPath);
+            }}
+          >
+            {tab.label}
+          </div>
+        );
+      })}
     </div>
   );
 }

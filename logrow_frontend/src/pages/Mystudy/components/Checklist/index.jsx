@@ -28,9 +28,26 @@ export default function Checklist() {
       })
       .then((res) => {
         console.log("✅ 스터디 로딩 성공:", res.data);
+        res.data.mainTasks.forEach((t, i) => {
+          console.log(`🧩 step ${i + 1}: ${t.title}, subtasks:`, t.subTasks);
+        });
+      
         setStudy(res.data);
-        setTasksByStep(res.data.mainTasks.map(() => [])); // 단계별 빈 하위태스크 초기화
+
+        const localData = localStorage.getItem(`checklist_${studyId}`);
+      if (localData) {
+        try {
+          const parsed = JSON.parse(localData);
+          setTasksByStep(parsed.map((task) => task.subTasks || []));
+          return; // 바로 반환해서 서버 데이터는 무시
+        } catch (err) {
+          console.error("❌ 로컬 데이터 파싱 오류:", err);
+        }
+      }
+
+        setTasksByStep(res.data.mainTasks.map((task) => task.subTasks || []));
       })
+      
       .catch((err) => {
         console.error("❌ 스터디 로딩 실패:", err);
       });
@@ -51,8 +68,13 @@ export default function Checklist() {
   };
 
   const handleChangeSubTask = (stepIndex, subIndex, field, value) => {
-    const updated = [...tasksByStep];
-    updated[stepIndex][subIndex][field] = value;
+    const updated = tasksByStep.map((stepTasks, i) =>
+      i === stepIndex
+        ? stepTasks.map((task, j) =>
+            j === subIndex ? { ...task, [field]: value } : task
+          )
+        : stepTasks
+    );
     setTasksByStep(updated);
   };
 
@@ -71,6 +93,25 @@ export default function Checklist() {
       Math.min(prev + 1, study.mainTasks.length - 1)
     );
   };
+
+  const handleStepSave = (stepIndex) => {
+    const payload = study.mainTasks.map((task, i) => {
+      const subTasks = tasksByStep[i];
+      const doneCount = subTasks.filter((s) => s.done).length;
+      const isDone = subTasks.length >= 5 && doneCount / subTasks.length >= 0.75;
+  
+      return {
+        step: task.step,
+        title: task.title,
+        done: isDone,
+        subTasks,
+      };
+    });
+  
+    localStorage.setItem(`checklist_${studyId}`, JSON.stringify(payload));
+    alert("✔️ 로컬에 저장 완료!");
+  };
+  
 
   return (
     <div className={styles.container}>
@@ -99,7 +140,9 @@ export default function Checklist() {
               onDelete={(subIndex) =>
                 handleDeleteSubTask(currentStepIndex, subIndex)
               }
+              onSave={() => handleStepSave(currentStepIndex)}
             />
+            
 
             <div className={styles.navBtns}>
               <button

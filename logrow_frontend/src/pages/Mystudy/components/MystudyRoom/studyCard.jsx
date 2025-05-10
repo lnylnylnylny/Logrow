@@ -7,8 +7,10 @@ export default function StudyCard({ study }) {
   const modeStyle = typeColorMap[study.mode] || {};
   const navigate = useNavigate();
   const handleClick = () => {
+    localStorage.setItem("selectedStudyId", study.id);  // 추가
     navigate(`/mystudy/checklist/${study.id}`);
   };
+  
 
   return (
     <div className={styles.card} onClick={handleClick}>

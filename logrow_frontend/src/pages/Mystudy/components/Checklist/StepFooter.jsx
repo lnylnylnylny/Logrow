@@ -1,28 +1,57 @@
 import styles from "./StepFooter.module.css";
 import PencilLine from "../../../../assets/pencilLine.svg";
 import { MdModeEditOutline } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import batteryImages from "../../../../data/batteryData";
-import { studyData } from "../../../../data/addStudyData";
 
 export default function StepFooter() {
-  const study = studyData.find((s) => s.id === 1); // 하드코딩: id 1번 스터디
+  const { studyId } = useParams();
+  const [feedbackList, setFeedbackList] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [feedbackList, setFeedbackList] = useState([
-    {
-      name: study.owner.name,
-      role: "스터디장",
-      battery: study.owner.battery,
-      feedback: study.owner.feedback || "",
-    },
-    ...study.participants,
-  ]);
 
-  const handleSave = (index, newText) => {
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const res = await axios.get(`/api/study/${studyId}/feedbacks`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log("✅ 서버 응답:", res.data);
+        const data = res.data;
+
+        if (Array.isArray(data)) {
+          setFeedbackList(data);
+        } else {
+          console.error("⚠️ 피드백 데이터 형식이 배열이 아님:", data);
+          setFeedbackList([]);
+        }
+      } catch (err) {
+        console.error("❌ 피드백 로딩 실패:", err);
+        setFeedbackList([]);
+      }
+    };
+
+    fetchFeedbacks();
+  }, [studyId]);
+
+  const handleSave = async (index, newText) => {
     const updated = [...feedbackList];
     updated[index].feedback = newText;
     setFeedbackList(updated);
     setEditingIndex(null);
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(`/api/study/${studyId}/feedbacks`, updated, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log("✅ 피드백 저장 성공");
+    } catch (err) {
+      console.error("❌ 피드백 저장 실패:", err);
+    }
   };
 
   return (
@@ -50,7 +79,7 @@ export default function StepFooter() {
                 <input
                   type="text"
                   className={styles.feedbackInput}
-                  value={member.feedback}
+                  value={member.feedback ?? ""}
                   onChange={(e) => {
                     const updated = [...feedbackList];
                     updated[index].feedback = e.target.value;
@@ -58,10 +87,10 @@ export default function StepFooter() {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      handleSave(index, member.feedback);
+                      handleSave(index, member.feedback ?? "");
                     }
                   }}
-                  onBlur={() => handleSave(index, member.feedback)}
+                  onBlur={() => handleSave(index, member.feedback ?? "")}
                   autoFocus
                 />
               ) : (

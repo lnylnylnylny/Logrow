@@ -47,11 +47,11 @@ let router = createBrowserRouter([
             Component: Checklist,
           },
           {
-            path: "growup",
+            path: "growup/:studyId",
             Component: GrowUp,
           },
           {
-            path: "review",
+            path: "review/:studyId",
             Component: Review,
           },
         ],

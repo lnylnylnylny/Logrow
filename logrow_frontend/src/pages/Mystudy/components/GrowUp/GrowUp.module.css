@@ -198,6 +198,11 @@
   opacity: 1;
 }
 
+.cardWrapper.hoverEnabled:hover .hoverImage {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* 평가하러 가기 버튼 */
 .reviewButton {
   position: absolute;
