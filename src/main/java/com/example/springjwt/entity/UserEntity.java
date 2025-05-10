@@ -27,6 +27,7 @@ public class UserEntity {
     private String introduction; // 소개글
 
     private String role;
+<<<<<<< HEAD
 
     @Column(length = 500)
     private String feedback;
@@ -38,4 +39,6 @@ public class UserEntity {
     public void setFeedback(String feedback) {
         this.feedback = feedback;
     }
+=======
+>>>>>>> 8cf9b90d9351c5d1955dc9b209e3233900347ade
 }

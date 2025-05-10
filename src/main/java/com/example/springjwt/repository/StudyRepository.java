@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.springjwt.repository;
 
 import com.example.springjwt.entity.StudyEntity;
@@ -20,3 +21,13 @@ public interface StudyRepository extends JpaRepository<StudyEntity, Long> {
     Optional<StudyEntity> findByIdWithParticipants(@Param("id") Long id);
 
 }
+=======
+// StudyRepository.java (신규 생성 필수)
+package com.example.springjwt.repository;
+
+import com.example.springjwt.entity.Study;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudyRepository extends JpaRepository<Study, Long> {
+}
+>>>>>>> 8cf9b90d9351c5d1955dc9b209e3233900347ade
